@@ -4,6 +4,6 @@ project(WorldJS)
 
 add_definitions("-std=c++11")
 
-file(GLOB sources *.cpp)
+file(GLOB sources src/*.cpp)
 
 add_executable(WorldJS ${sources})
