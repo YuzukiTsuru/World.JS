@@ -1,0 +1,3 @@
+Z:/GitCode/World.JS/build/CMakeFiles/edit_cache.dir
+Z:/GitCode/World.JS/build/CMakeFiles/WorldJS.dir
+Z:/GitCode/World.JS/build/CMakeFiles/rebuild_cache.dir
