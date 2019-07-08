@@ -2,4 +2,7 @@
 
 cd build
 node WorldJS.js
-cd ..
+
+
+copy WorldJS.js ..\test\
+copy WorldJS.js.mem ..\test\

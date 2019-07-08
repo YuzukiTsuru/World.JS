@@ -217,3 +217,4 @@ Mkfile.old
 dkms.conf
 
 build/
+test/
