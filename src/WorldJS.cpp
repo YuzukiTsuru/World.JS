@@ -11,8 +11,9 @@
 
 using namespace std;
 using namespace emscripten;
+
 extern "C" {
-    int Lenth(string file){
+    int Len(string file){
         cout << file << endl;
         const char *files = file.c_str();
         cout << files << endl;
@@ -21,5 +22,5 @@ extern "C" {
 }
 
 EMSCRIPTEN_BINDINGS(my_module) {
-    emscripten::function("Lenth", &Lenth);
+    emscripten::function("Len", &Len);
 }

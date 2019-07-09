@@ -11,11 +11,13 @@ include_directories(
 
 file(GLOB sources src/*.cpp)
 file(GLOB tools tools/*.cpp)
+file(GLOB World lib/WorldCmake/World/src/*.cpp)
 
 add_library(tools ${tools})
+add_library(World ${World})
 
 add_executable(WorldJS ${sources})
 
 set_target_properties(WorldJS PROPERTIES LINK_FLAGS "-s DEMANGLE_SUPPORT=1 --bind")
 
-target_link_libraries(WorldJS tools)
+target_link_libraries(WorldJS tools World)
