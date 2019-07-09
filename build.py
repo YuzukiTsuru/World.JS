@@ -12,11 +12,11 @@ def resolve_path(rel_path):
 def rmtree_silent(root):
     def remove_readonly_handler(fn, root, excinfo):
         if fn is os.rmdir:
-            if os.path.isdir(root):  # if exists
+            if os.path.isdir(root):            # if exists
                 os.chmod(root, stat.S_IWRITE)  # make writable
                 os.rmdir(root)
         elif fn is os.remove:
-            if os.path.isfile(root):  # if exists
+            if os.path.isfile(root):           # if exists
                 os.chmod(root, stat.S_IWRITE)  # make writable
                 os.remove(root)
 
@@ -26,7 +26,7 @@ def rmtree_silent(root):
 def makedirs_silent(root):
     try:
         os.makedirs(root)
-    except OSError:  # mute if exists
+    except OSError:                            # mute if exists
         pass
 
 
