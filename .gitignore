@@ -217,4 +217,6 @@ Mkfile.old
 dkms.conf
 
 build/
-test/
+test/*.js
+test/*.wav
+test/*.mem
