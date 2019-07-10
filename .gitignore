@@ -222,3 +222,4 @@ test/*.wav
 test/*.mem
 
 *.pyc
+*.data
