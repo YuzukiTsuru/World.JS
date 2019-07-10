@@ -18,6 +18,6 @@ add_library(World ${World})
 
 add_executable(WorldJS ${sources})
 
-set_target_properties(WorldJS PROPERTIES LINK_FLAGS "-s DEMANGLE_SUPPORT=1 --bind")
+set_target_properties(WorldJS PROPERTIES LINK_FLAGS "-s DEMANGLE_SUPPORT=1 --bind --preload-file vaiueo2d.wav --use-preload-plugins")
 
 target_link_libraries(WorldJS tools World)

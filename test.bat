@@ -1,10 +1,9 @@
 @echo off
 
 cd build
-node WorldJS.js
 
-
-copy WorldJS.js ..\test\
-copy WorldJS.js.mem ..\test\
+copy *.js ..\test\
+copy *.js.mem ..\test\
+copy *.data ..\test\
 
 cd ..

@@ -11,31 +11,6 @@
 using namespace std;
 using namespace emscripten;
 
-#if (defined(__WIN32__) || defined(_WIN32)) && !defined(__MINGW32__)
-#include <conio.h>
-#include <windows.h>
-#pragma comment(lib, "winmm.lib")
-#pragma warning(disable : 4996)
-#endif
-#if (defined(__linux__) || defined(__CYGWIN__) || defined(__APPLE__))
-#include <stdint.h>
-#include <sys/time.h>
-#endif
-
-#if (defined(__linux__) || defined(__CYGWIN__) || defined(__APPLE__))
-// Linux porting section: implement timeGetTime() by gettimeofday(),
-#ifndef DWORD
-#define DWORD uint32_t
-#endif
-DWORD timeGetTime()
-{
-    struct timeval tv;
-    gettimeofday(&tv, NULL);
-    DWORD ret = static_cast<DWORD>(tv.tv_usec / 1000 + tv.tv_sec * 1000);
-    return ret;
-}
-#endif
-
 //-----------------------------------------------------------------------------
 // struct for WORLD
 // This struct is an option.
@@ -73,28 +48,34 @@ val Get2XArray(Type **arr, int y_len, int x_len)
 }
 } // namespace
 
-extern "C"
+int DisplayInformation(int fs, int nbit, int x_length)
 {
-    int Len(string file)
-    {
-        cout << file << endl;
-        const char *files = file.c_str();
-        cout << files << endl;
-        return GetAudioLength(files);
-    }
-
-    int DisplayInformation(int fs, int nbit, int x_length)
-    {
-        printf("File information\n");
-        printf("Sampling : %d Hz %d Bit\n", fs, nbit);
-        printf("Length %d [sample]\n", x_length);
-        printf("Length %f [sec]\n", static_cast<double>(x_length) / fs);
-        return 0;
-    }
+    printf("File information\n");
+    printf("Sampling : %d Hz %d Bit\n", fs, nbit);
+    printf("Length %d [sample]\n", x_length);
+    printf("Length %f [sec]\n", static_cast<double>(x_length) / fs);
+    return 0;
+}
+// WavFile Read
+val WavRead_JS(string filename)
+{
+    val InWav = val::object();
+    const char *f = filename.c_str();
+    int fs, nbit;
+    int x_length = GetAudioLength(f);
+    double *x = new double[x_length];
+    wavread(f, &fs, &nbit, x);
+    InWav.set("x", Get1XArray<double>(x, x_length));
+    InWav.set("fs", fs);
+    InWav.set("nbit", nbit);
+    InWav.set("x_length", x_length);
+    delete[] x;
+    return InWav;
 }
 
 EMSCRIPTEN_BINDINGS(my_module)
 {
-    emscripten::function("Len", &Len);
     emscripten::function("DisplayInformation", &DisplayInformation);
+    emscripten::function("WavRead_JS", &WavRead_JS);
 }
+

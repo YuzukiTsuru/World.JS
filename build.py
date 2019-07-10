@@ -32,7 +32,7 @@ def makedirs_silent(root):
 
 if __name__ == "__main__":
     build_dir = resolve_path("build")
-    rmtree_silent(build_dir)
+    rmtree_silent(build_dir + '/CmakeFiles/')
     makedirs_silent(build_dir)
     os.chdir(build_dir)
 
