@@ -1,3 +1,6 @@
 [submodule "lib/WorldCmake/World"]
 	path = lib/WorldCmake/World
 	url = https://github.com/mmorise/World.git
+[submodule "tools/third_party/emscripten"]
+	path = tools/third_party/emscripten
+	url = https://github.com/emscripten-core/emscripten.gitore/emscripten.git
