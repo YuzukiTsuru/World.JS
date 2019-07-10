@@ -46,5 +46,8 @@ if __name__ == "__main__":
         "Unix Makefiles",
         ".."
     ])
-
-    check_call(["make"])
+    
+    try:
+        check_call(["make"])
+    except:
+        print('Build Fail')
