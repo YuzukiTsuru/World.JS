@@ -148,8 +148,14 @@ val Dio_JS(val x_val, int fs, double frame_period)
     int f0_length = GetSamplesForDIO(fs, x_length, frame_period);
     double *f0 = new double[f0_length];
     double *time_axis = new double[f0_length];
+    double *refined_f0 = new double[f0_length];
     // run dio
     Dio(x, x_length, fs, &option, time_axis, f0);
+    StoneMask(x, x_length, fs, time_axis, f0, f0_length, refined_f0);
+    for (int i = 0; i < f0_length; ++i)
+    {
+        f0[i] = refined_f0[i];
+    }
     // Set the output value
     ret.set("f0", Get1XArray<double>(f0, f0_length));
     ret.set("time_axis", Get1XArray<double>(time_axis, f0_length));
@@ -157,6 +163,7 @@ val Dio_JS(val x_val, int fs, double frame_period)
     delete[] f0;
     delete[] time_axis;
     delete[] x;
+    delete[] refined_f0;
     return ret;
 }
 
