@@ -47,6 +47,7 @@ val Get2XArray(Type **arr, int y_len, int x_len)
     }
     return arr2x;
 }
+
 template <class Type>
 Type *GetPtrFrom1XArray(val arr, int *len = NULL)
 {
@@ -247,6 +248,35 @@ val D4C_JS(val x_val, val f0_val, val time_axis_val, int fft_size, int fs, doubl
     return ret;
 }
 
+val Synthesis_JS(val f0_val, val spectral_val, val aperiodicity_val, int fft_size, int fs, val frame_period)
+{
+    int f0_length;
+    double framePeriodVal;
+    framePeriodVal = frame_period.as<double>();
+    double *f0 = GetPtrFrom1XArray<double>(f0_val, &f0_length);
+    double **spectrogram = GetPtrFrom2XArray<double>(spectral_val);
+    double **aperiodicity = GetPtrFrom2XArray<double>(aperiodicity_val);
+    int y_length;
+    y_length = static_cast<int>((f0_length - 1) * framePeriodVal / 1000.0 * fs) + 1;
+    double *y = new double[y_length];
+    Synthesis(f0, f0_length, spectrogram, aperiodicity, fft_size, framePeriodVal, fs, y_length, y);
+    val ret = Get1XArray<double>(y, y_length);
+    delete[] f0;
+    delete[] spectrogram;
+    delete[] aperiodicity;
+    delete[] y;
+    return ret;
+}
+
+val WavWrite_JS(val y_val, int fs, int nbits, string filename)
+{
+    // init
+    int y_length;
+    double *y = GetPtrFrom1XArray<double>(y_val, &y_length);
+    wavwrite(y, y_length, fs, 16, filename.c_str());
+    return val(y_length);
+}
+
 //-----------------------------------------------------------------------------
 // The JavaScript API for C++
 //-----------------------------------------------------------------------------
@@ -258,4 +288,6 @@ EMSCRIPTEN_BINDINGS(my_module)
     emscripten::function("Harvest_JS", &Harvest_JS);
     emscripten::function("CheapTrick_JS", &CheapTrick_JS);
     emscripten::function("D4C_JS", &D4C_JS);
+    emscripten::function("Synthesis_JS", &Synthesis_JS);
+    emscripten::function("WavWrite_JS", &WavWrite_JS);
 }
