@@ -109,7 +109,7 @@ int DisplayInformation(int fs, int nbit, int x_length)
 // WavFile Read
 val WavRead_JS(string filename)
 {
-    // init val 
+    // init val
     val InWav = val::object();
     // Get File Name
     const char *f = filename.c_str();
@@ -130,7 +130,7 @@ val WavRead_JS(string filename)
 
 val Dio_JS(val x_val, int fs, double frame_period)
 {
-    // init val 
+    // init val
     val ret = val::object();
     int x_length;
     // translate array to C++ ptr
@@ -159,9 +159,43 @@ val Dio_JS(val x_val, int fs, double frame_period)
     return ret;
 }
 
+val Harvest_JS(val x_val, int fs, double frame_period)
+{
+    // init val
+    val ret = val::object();
+    // init 
+    int x_length;
+    // translate array to C++ ptr
+    double *x = GetPtrFrom1XArray<double>(x_val, &x_length);
+    // init Harvest Option
+    HarvestOption option = {0};
+    InitializeHarvestOption(&option);
+    // Get harvest settings
+    option.frame_period = frame_period;
+    option.f0_floor = 71.0;
+    // Get Samples For Harvest
+    int f0_length = GetSamplesForHarvest(fs, x_length, frame_period);
+    double *f0 = new double[f0_length];
+    double *time_axis = new double[f0_length];
+    // run harvest
+    Harvest(x, x_length, fs, &option, time_axis, f0);
+    // set outputs
+    ret.set("f0", Get1XArray<double>(f0, f0_length));
+    ret.set("time_axis", Get1XArray<double>(time_axis, f0_length));
+    // destory memory
+    delete[] f0;
+    delete[] time_axis;
+    delete[] x;
+    return ret;
+}
+
+//-----------------------------------------------------------------------------
+// The JavaScript API for C++
+//-----------------------------------------------------------------------------
 EMSCRIPTEN_BINDINGS(my_module)
 {
     emscripten::function("DisplayInformation", &DisplayInformation);
     emscripten::function("WavRead_JS", &WavRead_JS);
     emscripten::function("Dio_JS", &Dio_JS);
+    emscripten::function("Harvest_JS", &Harvest_JS);
 }
