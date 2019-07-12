@@ -163,7 +163,7 @@ val Harvest_JS(val x_val, int fs, double frame_period)
 {
     // init val
     val ret = val::object();
-    // init 
+    // init
     int x_length;
     // translate array to C++ ptr
     double *x = GetPtrFrom1XArray<double>(x_val, &x_length);
@@ -189,6 +189,64 @@ val Harvest_JS(val x_val, int fs, double frame_period)
     return ret;
 }
 
+val CheapTrick_JS(val x_val, val f0_val, val time_axis_val, int fs, double frame_period)
+{
+    // init val
+    val ret = val::object();
+    int x_length, f0_length;
+    // translate array to C++ ptr
+    double *x = GetPtrFrom1XArray<double>(x_val, &x_length);
+    double *f0 = GetPtrFrom1XArray<double>(f0_val, &f0_length);
+    double *time_axis = GetPtrFrom1XArray<double>(time_axis_val);
+    // Run CheapTrick
+    CheapTrickOption option = {0};
+    InitializeCheapTrickOption(fs, &option);
+    option.f0_floor = 71.0;
+    option.fft_size = GetFFTSizeForCheapTrick(fs, &option);
+    ret.set("fft_size", option.fft_size);
+    double **spectrogram = new double *[f0_length];
+    int specl = option.fft_size / 2 + 1;
+    for (int i = 0; i < f0_length; i++)
+    {
+        spectrogram[i] = new double[specl];
+    }
+    CheapTrick(x, x_length, fs, time_axis, f0, f0_length, &option, spectrogram);
+    ret.set("spectral", Get2XArray<double>(spectrogram, f0_length, specl));
+    delete[] x;
+    delete[] f0;
+    delete[] time_axis;
+    delete[] spectrogram;
+    return ret;
+}
+
+val D4C_JS(val x_val, val f0_val, val time_axis_val, int fft_size, int fs, double frame_period)
+{
+    // init val
+    val ret = val::object();
+    int x_length, f0_length;
+    // translate array to C++ ptr
+    double *x = GetPtrFrom1XArray<double>(x_val, &x_length);
+    double *f0 = GetPtrFrom1XArray<double>(f0_val, &f0_length);
+    double *time_axis = GetPtrFrom1XArray<double>(time_axis_val);
+    // run D4C
+    D4COption option = {0};
+    InitializeD4COption(&option);
+    option.threshold = 0.85;
+    double **aperiodicity = new double *[f0_length];
+    int specl = fft_size / 2 + 1;
+    for (int i = 0; i < f0_length; ++i)
+    {
+        aperiodicity[i] = new double[specl];
+    }
+    D4C(x, x_length, fs, time_axis, f0, f0_length, fft_size, &option, aperiodicity);
+    ret.set("aperiodicity", Get2XArray<double>(aperiodicity, f0_length, specl));
+    delete[] x;
+    delete[] f0;
+    delete[] time_axis;
+    delete[] aperiodicity;
+    return ret;
+}
+
 //-----------------------------------------------------------------------------
 // The JavaScript API for C++
 //-----------------------------------------------------------------------------
@@ -198,4 +256,6 @@ EMSCRIPTEN_BINDINGS(my_module)
     emscripten::function("WavRead_JS", &WavRead_JS);
     emscripten::function("Dio_JS", &Dio_JS);
     emscripten::function("Harvest_JS", &Harvest_JS);
+    emscripten::function("CheapTrick_JS", &CheapTrick_JS);
+    emscripten::function("D4C_JS", &D4C_JS);
 }
