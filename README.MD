@@ -42,7 +42,7 @@ For more information, please visit [Morise's World repository](https://github.co
 </script>
 ```
 
-![](Z:\GitCode\World.JS\ScreenShots\WavRead.png)
+![](ScreenShots\WavRead.png)
 
 ##### DIO_JS
 
@@ -58,7 +58,7 @@ For more information, please visit [Morise's World repository](https://github.co
     console.log(f0);
 </script>
 ```
-![Dio](Z:\GitCode\World.JS\ScreenShots\Dio.png)
+![Dio](ScreenShots\Dio.png)
 
 ##### Harvest_JS
 
@@ -69,17 +69,13 @@ For more information, please visit [Morise's World repository](https://github.co
 
 <script>
     let x = Module.WavRead_JS("vaiueo2d.wav");
-	let f0 = Module.Harvest_JS(x.x,x.fs,2.0);
+    let f0 = Module.Harvest_JS(x.x,x.fs,2.0);
     console.log(x);
     console.log(f0);
 </script>
 ```
 
-
-
-![Harvest](Z:\GitCode\World.JS\ScreenShots\Harvest.png)
-
-
+![Harvest](ScreenShots\Harvest.png)
 
 ### Build World.JS
 
