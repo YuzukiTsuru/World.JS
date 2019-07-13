@@ -53,7 +53,7 @@ For more information, please visit [Morise's World repository](https://github.co
 
 <script>
     let x = Module.WavRead_JS("vaiueo2d.wav");
-	let f0 = Module.Dio_JS(x.x,x.fs,2.0);
+    let f0 = Module.Dio_JS(x.x,x.fs,2.0);
     console.log(x);
     console.log(f0);
 </script>
@@ -64,7 +64,7 @@ For more information, please visit [Morise's World repository](https://github.co
 
 > F0 estimation based on Harvest.
 
-```
+```html
 <script src="WorldJS.js"></script> 
 
 <script>
