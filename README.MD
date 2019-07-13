@@ -42,7 +42,7 @@ For more information, please visit [Morise's World repository](https://github.co
 </script>
 ```
 
-![](ScreenShots\WavRead.png)
+![](ScreenShots/WavRead.png)
 
 ##### DIO_JS
 
@@ -58,7 +58,7 @@ For more information, please visit [Morise's World repository](https://github.co
     console.log(f0);
 </script>
 ```
-![Dio](ScreenShots\Dio.png)
+![Dio](ScreenShots/Dio.png)
 
 ##### Harvest_JS
 
@@ -75,7 +75,7 @@ For more information, please visit [Morise's World repository](https://github.co
 </script>
 ```
 
-![Harvest](ScreenShots\Harvest.png)
+![Harvest](ScreenShots/Harvest.png)
 
 ### Build World.JS
 
