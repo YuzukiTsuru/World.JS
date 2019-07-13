@@ -22,7 +22,7 @@ Morise's World Vocoder is a fast and high-quality vocoder. World Vocoder paramet
 2. Harmonic spectral envelope
 3. Aperiodic spectral envelope (relative to the harmonic spectral envelope)
 
-For more information, please visit [Morise's World repository](https://github.com/mmorise/World) and the [official website of World Vocoder](http://ml.cs.yamanashi.ac.jp/world/english/)
+For more information, please visit [Morise's World repository](https://github.com/mmorise/World) and the [official website of World Vocoder](http://www.kisc.meiji.ac.jp/~mmorise/world/english/)
 
 ### API
 
