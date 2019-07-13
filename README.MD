@@ -1,6 +1,7 @@
 <p align="center"><img width="300" src="ScreenShots/logo.png" alt="World.JS logo"></p>
 <h1 align="center">World.JS</h1>
 <p align="center">A JavaScript Wrapper for World Vocoder Powered by Emscripten</p>
+
 ### About World.JS
 
 World.JS is A JavaScript Wrapper for World Vocoder Powered by Emscripten.
