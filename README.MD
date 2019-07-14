@@ -26,6 +26,17 @@ For more information, please visit [Morise's World repository](https://github.co
 
 ### API
 
+- [x] WavRead_JS
+- [x] DIO_JS
+- [x] Harvest_JS
+- [x] DisplayInformation
+- [x] CheapTrick_JS
+- [x] D4C_JS
+- [ ] Synthesis_JS
+- [x] WavWrite_JS
+
+### Example
+
 ##### WavRead_JS
 
 > .wav input/output functions
