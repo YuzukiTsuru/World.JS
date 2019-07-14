@@ -12,23 +12,6 @@
 using namespace std;
 using namespace emscripten;
 
-//-----------------------------------------------------------------------------
-// struct for WORLD
-// This struct is an option.
-// Users are NOT forced to use this struct.
-//-----------------------------------------------------------------------------
-typedef struct
-{
-    emscripten::val f0;
-    emscripten::val time_axis;
-    emscripten::val spectral;
-    emscripten::val aperiodicity;
-    int fs;
-    int nbits;
-    int frame_length;
-    int fft_size;
-} WorldJS;
-
 namespace
 {
 template <class Type>
@@ -68,7 +51,7 @@ Type **GetPtrFrom2XArray(val arr, int *y_len = NULL, int *x_len = NULL)
 {
     if (y_len == NULL)
     {
-        x_len = new int[1];
+        y_len = new int[1];
     }
     if (x_len == NULL)
     {

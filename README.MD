@@ -1,7 +1,6 @@
 <p align="center"><img width="300" src="ScreenShots/logo.png" alt="World.JS logo"></p>
 <h1 align="center">World.JS</h1>
 <p align="center">A JavaScript Wrapper for World Vocoder Powered by Emscripten</p>
-
 ### About World.JS
 
 World.JS is A JavaScript Wrapper for World Vocoder Powered by Emscripten.
@@ -22,7 +21,7 @@ Morise's World Vocoder is a fast and high-quality vocoder. World Vocoder paramet
 2. Harmonic spectral envelope
 3. Aperiodic spectral envelope (relative to the harmonic spectral envelope)
 
-For more information, please visit [Morise's World repository](https://github.com/mmorise/World) and the [official website of World Vocoder](http://ml.cs.yamanashi.ac.jp/world/english/)
+For more information, please visit [Morise's World repository](https://github.com/mmorise/World) and the [official website of World Vocoder](http://www.kisc.meiji.ac.jp/~mmorise/world/english/)
 
 ### API
 
@@ -78,6 +77,69 @@ For more information, please visit [Morise's World repository](https://github.co
 
 ![Harvest](ScreenShots/Harvest.png)
 
+##### DisplayInformation
+
+> Display Information
+
+```html
+<script src="WorldJS.js"></script> 
+
+<script>
+    let x = Module.WavRead_JS("vaiueo2d.wav");
+    Module.DisplayInformation(x.fs, x.nbit, x.x_length);
+</script>
+```
+
+##### CheapTrick_JS
+
+> Spectral envelope estimation on the basis of the idea of CheapTrick.
+
+```html
+<script src="WorldJS.js"></script> 
+
+<script>
+    let x = Module.WavRead_JS("vaiueo2d.wav");
+    let f0 = Module.Dio_JS(x.x, x.fs, 2.0);
+    Module.CheapTrick_JS(x.x, f0.f0, f0.time_axis, x.fs, 2.0);
+</script>
+```
+
+![CheapTrick](ScreenShots/CheapTrick.png)
+
+##### D4C_JS
+
+> Band-aperiodicity estimation on the basis of the idea of D4C.
+
+```html
+<script src="WorldJS.js"></script> 
+
+<script>
+    let x = Module.WavRead_JS("vaiueo2d.wav");
+    let f0 = Module.Dio_JS(x.x, x.fs, 2.0);
+    let fft = Module.CheapTrick_JS(x.x, f0.f0, f0.time_axis, x.fs, 2.0);
+    Module.D4C_JS(x.x, f0.f0, f0.time_axis, fft.fft_size, x.fs, 2.0);
+</script>
+```
+
+![D4C](ScreenShots/D4C.png)
+
+##### Synthesis_JS
+
+> Unfinish
+
+##### WavWrite_JS
+
+> Output Wav File
+
+```html
+<script src="WorldJS.js"></script> 
+<script>
+    let x = Module.WavRead_JS("vaiueo2d.wav");
+    Module.WavWrite_JS(x.x, x.fs, x.nbit, "out.wav")
+</script>
+```
+![WavWrite](ScreenShots/WavWrite.png)
+
 ### Build World.JS
 
 ##### Before Build
@@ -116,6 +178,24 @@ python build.py
 
 And the file will show in `build/WorldJS.data` `build/WorldJS.js`  `build/WorldJS.js.mem`
 
+### Troubleshooting
+
+##### Uncaught could not load memory initializer
+
+```
+Access to XMLHttpRequest at 'file:///World.JS/test/WorldJS.data' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes: http, data, chrome, chrome-extension, https.
+WorldJS.js:15 Uncaught could not load memory initializer WorldJS.js.mem
+```
+
+Unfortunately several browsers (including *Chrome*, *Safari*, and *Internet Explorer*) do not support `file://` XHRrequests, and can’t load extra files needed by the HTML (like a `.mem` file, or packaged file data as mentioned lower down). For these browsers you’ll need to serve the files using a webserver. The easiest way to do this is to use the python **HTTPServer** (in the current directory do `python -m SimpleHTTPServer` (Python2)  ` python -m http.server` (python3) and then open `http://localhost:8000`).
+
+### File System Develop
+
+The File System is based on Emscripten,visit Emscripten home for more detials:
+
+[https://emscripten.org/docs/porting/files/index.html](https://emscripten.org/docs/porting/files/index.html)
+
+
 ### File Tree 
 
 ```Text
@@ -136,7 +216,7 @@ And the file will show in `build/WorldJS.data` `build/WorldJS.js`  `build/WorldJ
 
 
 <details>
-<summary>Expand View all directory trees</summary>
+<summary>Expand View full directory trees</summary>
 <pre><code>.
 ├─.vscode
 ├─build
@@ -651,5 +731,3 @@ And the file will show in `build/WorldJS.data` `build/WorldJS.js`  `build/WorldJ
                 │          └─emscripten
                 └─source-maps
 </pre></code>
-
-
