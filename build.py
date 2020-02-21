@@ -31,17 +31,17 @@ def makedirs_silent(root):
 
 
 def test_pre():
-    if os.path.exists('build/vaiueo2d.wav') == False:
+    if os.path.exists('build/vaiueo2d.wav') is False:
         red = open('test/vaiueo2d.wav', 'rb').read()
         new = open('build/vaiueo2d.wav', 'wb')
         new.write(red)
 
 
 if __name__ == "__main__":
-    test_pre()
     build_dir = resolve_path("build")
     rmtree_silent(build_dir + '/CMakeFiles/')
     makedirs_silent(build_dir)
+    test_pre()
     os.chdir(build_dir)
 
     check_call([

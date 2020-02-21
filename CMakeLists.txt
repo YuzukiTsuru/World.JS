@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 project(WorldJS)
 
 add_definitions("-std=c++11")
+set(flag "-s SAFE_HEAP=1 -s WASM=0 --js-opts 0 -g3 -s ASSERTIONS=2 -s DEMANGLE_SUPPORT=1 --bind --preload-file vaiueo2d.wav --use-preload-plugins")
 
 include_directories(
     lib/WorldCmake/World/src/
@@ -18,6 +19,6 @@ add_library(World ${World})
 
 add_executable(WorldJS ${sources})
 
-set_target_properties(WorldJS PROPERTIES LINK_FLAGS "-s SAFE_HEAP=1 --js-opts 0 -g4 -s ASSERTIONS=2 -s DEMANGLE_SUPPORT=1 --bind --preload-file vaiueo2d.wav --use-preload-plugins")
+set_target_properties(WorldJS PROPERTIES LINK_FLAGS ${flag})
 
 target_link_libraries(WorldJS tools World)
