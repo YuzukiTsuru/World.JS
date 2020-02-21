@@ -1,4 +1,4 @@
-# Work With Python2
+# Work With Python3
 import os
 import stat
 from shutil import rmtree
