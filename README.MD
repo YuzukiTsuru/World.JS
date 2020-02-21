@@ -159,7 +159,7 @@ For more information, please visit [Morise's World repository](https://github.co
 You must install these software in advance:
 
 - [Cmake](https://cmake.org/)
-- [Python2.7 environment](https://www.python.org/)
+- [Python3 environment](https://www.python.org/)
 - [Emscripten SDK](https://emscripten.org/)
 - [Node](https://nodejs.org/)
 - Software development tool chain like `make` `gcc` etc.
