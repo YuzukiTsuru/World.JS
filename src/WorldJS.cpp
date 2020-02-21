@@ -250,16 +250,15 @@ val Wav2World(string fileName) {
     // init return val
     val World = val::object();
     // Get File Name
-    const char* f = filename.c_str();
+    const char* f = fileName.c_str();
     int fs, nbit;
     // GetAudioLength for read
     int x_length = GetAudioLength(f);
     double* x = new double[x_length];
     // Use tools/audioio.cpp wavread function
     wavread(f, &fs, &nbit, x);
-    Dio(x, x_length, fs);
 
-    return val();
+    return val(x);
 }
 
 //-----------------------------------------------------------------------------

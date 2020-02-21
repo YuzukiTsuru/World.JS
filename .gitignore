@@ -222,3 +222,4 @@ test/*.mem
 
 *.pyc
 *.data
+test/WorldJS.wasm
