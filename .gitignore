@@ -218,7 +218,6 @@ dkms.conf
 
 build/
 test/*.js
-test/*.wav
 test/*.mem
 
 *.pyc

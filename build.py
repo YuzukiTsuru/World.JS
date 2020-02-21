@@ -30,16 +30,24 @@ def makedirs_silent(root):
         pass
 
 
+def test_pre():
+    if os.path.exists('build/vaiueo2d.wav') == False:
+        red = open('test/vaiueo2d.wav', 'rb').read()
+        new = open('build/vaiueo2d.wav', 'wb')
+        new.write(red)
+
+
 if __name__ == "__main__":
+    test_pre()
     build_dir = resolve_path("build")
-    rmtree_silent(build_dir + '/CmakeFiles/')
+    rmtree_silent(build_dir + '/CMakeFiles/')
     makedirs_silent(build_dir)
     os.chdir(build_dir)
 
     check_call([
         "cmake",
         os.path.expandvars(
-            "-DCMAKE_TOOLCHAIN_FILE=D:\\Emscripten\\emscripten\\1.35.0\\cmake\\Modules\\Platform\\Emscripten.cmake"),
+            "-DCMAKE_TOOLCHAIN_FILE=D:\\ProgramData\\emsdk\\emsdk\\upstream\\emscripten\\cmake\\Modules\\Platform\\Emscripten.cmake"),
         "-DCMAKE_BUILD_TYPE=Release",
         "-DCMAKE_MAKE_PROGRAM=mingw32-make",
         "-G",
@@ -48,6 +56,6 @@ if __name__ == "__main__":
     ])
     
     try:
-        check_call(["make"])
+        check_call(["mingw32-make"])
     except:
         print('Build Fail')

@@ -1,2 +1,2 @@
 @echo off
-activate emcc
+conda activate emcc
