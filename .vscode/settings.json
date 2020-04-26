@@ -1,5 +1,5 @@
 {
     "C_Cpp.errorSquiggles": "Disabled",
     "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools",
-    "python.pythonPath": "D:\\ProgramData\\Miniconda3\\envs\\emcc\\python.exe"
+    "python.pythonPath": "C:\\Python38\\python.exe"
 }

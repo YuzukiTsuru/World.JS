@@ -26,20 +26,21 @@ For more information, please visit [Morise's World repository](https://github.co
 
 ### API
 
-- [x] WavRead_JS
-- [x] DIO_JS
-- [x] Harvest_JS
-- [x] DisplayInformation
-- [x] CheapTrick_JS
-- [x] D4C_JS
-- [ ] Synthesis_JS
-- [x] WavWrite_JS
+- [x] WavRead_JS             # .wav input functions
+- [x] DIO_JS                 # F0 estimation based on DIO (Distributed Inline-filter Operation).
+- [x] Harvest_JS             # F0 estimation based on Harvest.
+- [x] DisplayInformation     # Display Information
+- [x] CheapTrick_JS          # Spectral envelope estimation on the basis of the idea of CheapTrick.
+- [x] D4C_JS                 # Band-aperiodicity estimation on the basis of the idea of D4C.
+- [X] Synthesis_JS           # Voice synthesis based on f0, spectrogram and aperiodicity.
+- [x] WavWrite_JS            # Output Wav File
+- [ ] Wav2World              # wav to world 
 
 ### Example
 
 ##### WavRead_JS
 
-> .wav input/output functions
+> .wav input functions
 
 ```html
 <script src="WorldJS.js"></script> 
@@ -128,8 +129,8 @@ For more information, please visit [Morise's World repository](https://github.co
 <script>
     let x = Module.WavRead_JS("vaiueo2d.wav");
     let f0 = Module.Dio_JS(x.x, x.fs, 2.0);
-    let fft = Module.CheapTrick_JS(x.x, f0.f0, f0.time_axis, x.fs, 2.0);
-    Module.D4C_JS(x.x, f0.f0, f0.time_axis, fft.fft_size, x.fs, 2.0);
+    let sp = Module.CheapTrick_JS(x.x, f0.f0, f0.time_axis, x.fs, 2.0);
+    Module.D4C_JS(x.x, f0.f0, f0.time_axis, sp.fft_size, x.fs, 2.0);
 </script>
 ```
 
@@ -137,7 +138,18 @@ For more information, please visit [Morise's World repository](https://github.co
 
 ##### Synthesis_JS
 
-> Unfinish
+> Voice synthesis based on f0, spectrogram and aperiodicity.
+```html
+<script src="WorldJS.js"></script> 
+
+<script>
+    let x = Module.WavRead_JS("vaiueo2d.wav");
+    let f0 = Module.Dio_JS(x.x, x.fs, 2.0);
+    let sp = Module.CheapTrick_JS(x.x, f0.f0, f0.time_axis, x.fs, 2.0);
+    let ap = Module.D4C_JS(x.x, f0.f0, f0.time_axis, sp.fft_size, x.fs, 2.0);
+    Module.Synthesis_JS(f0.f0, sp.spectral, ap.aperiodicity, sp.fft_size, x.fs, 2.0)
+</script>
+```
 
 ##### WavWrite_JS
 
