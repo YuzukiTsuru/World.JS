@@ -7,6 +7,7 @@ build_script:
 - echo "My emscripten build"
 - mkdir -p build
 - cd build
+- cp ../test/vaiueo2d.wav vaiueo2d.wav
 - cmake -DCMAKE_TOOLCHAIN_FILE=../emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_BUILD_TYPE=Release ..
 - make
 
