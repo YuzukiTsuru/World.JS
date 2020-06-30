@@ -1,0 +1,20 @@
+image:
+- Ubuntu
+
+build_script:
+- echo "My emscripten build"
+- mkdir -p build
+- cd build
+- cmake -DCMAKE_TOOLCHAIN_FILE=../../emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_BUILD_TYPE=Release ..
+- make
+
+matrix:
+  install:
+    - git clone https://github.com/emscripten-core/emsdk.git
+    - cd emsdk
+    - ./emsdk install latest
+    - ./emsdk activate latest
+    - source ./emsdk_env.sh
+    - apt install cmake
+    - cd $appveyor_build_folder
+  
