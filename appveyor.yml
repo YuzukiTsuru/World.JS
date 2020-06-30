@@ -8,8 +8,7 @@ build_script:
 - cmake -DCMAKE_TOOLCHAIN_FILE=../../emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_BUILD_TYPE=Release ..
 - make
 
-matrix:
-- install:
+install:
     - git clone https://github.com/emscripten-core/emsdk.git
     - cd emsdk
     - ./emsdk install latest
