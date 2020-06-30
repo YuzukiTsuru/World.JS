@@ -17,5 +17,5 @@ install:
     - ./emsdk activate latest
     - source ./emsdk_env.sh
     - sudo apt install cmake -y
-    - cd $appveyor_build_folder
+    - cd ..
   
