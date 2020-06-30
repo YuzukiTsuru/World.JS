@@ -29,7 +29,7 @@ Ubuntu:
 [![Build status](https://ci.appveyor.com/api/projects/status/6vbge2p0q0mdshtc?svg=true)](https://ci.appveyor.com/project/GloomyGhost-MosquitoCoil/world-js)
 
 ### API
-
+```
 - [x] WavRead_JS             # .wav input functions
 - [x] DIO_JS                 # F0 estimation based on DIO (Distributed Inline-filter Operation).
 - [x] Harvest_JS             # F0 estimation based on Harvest.
@@ -39,7 +39,7 @@ Ubuntu:
 - [X] Synthesis_JS           # Voice synthesis based on f0, spectrogram and aperiodicity.
 - [x] WavWrite_JS            # Output Wav File
 - [ ] Wav2World              # wav to world 
-
+```
 ### Example
 
 ##### WavRead_JS
@@ -143,6 +143,7 @@ Ubuntu:
 ##### Synthesis_JS
 
 > Voice synthesis based on f0, spectrogram and aperiodicity.
+
 ```html
 <script src="WorldJS.js"></script> 
 
@@ -183,7 +184,7 @@ You must install these software in advance:
 ##### Clone Files
 
 ```bash
-git clone https://github.com/GloomyGhost-MosquitoSeal/World.JS.git
+git clone https://github.com/YuzukiTsuru/World.JS.git
 git submodule init
 git submodule update
 ```
@@ -192,7 +193,7 @@ git submodule update
 
 Edit it in `build.py` and change the path into your own.
 
-https://github.com/GloomyGhost-MosquitoSeal/World.JS/blob/525243dc1efddd510751a98cb4caca98ce26ba17/build.py#L42
+https://github.com/YuzukiTsuru/World.JS/blob/525243dc1efddd510751a98cb4caca98ce26ba17/build.py#L42
 
 ```python
 "DCMAKE_TOOLCHAIN_FILE=D:\\Emscripten\\emscripten\\1.35.0\\cmake\\Modules\\Platform\\Emscripten.cmake"
