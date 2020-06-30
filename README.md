@@ -24,6 +24,10 @@ Morise's World Vocoder is a fast and high-quality vocoder. World Vocoder paramet
 
 For more information, please visit [Morise's World repository](https://github.com/mmorise/World) and the [official website of World Vocoder](http://www.kisc.meiji.ac.jp/~mmorise/world/english/)
 
+### Build Status
+Ubuntu: 
+[![Build status](https://ci.appveyor.com/api/projects/status/6vbge2p0q0mdshtc?svg=true)](https://ci.appveyor.com/project/GloomyGhost-MosquitoCoil/world-js)
+
 ### API
 
 - [x] WavRead_JS             # .wav input functions
