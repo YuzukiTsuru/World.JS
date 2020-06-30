@@ -1,6 +1,8 @@
 image:
 - Ubuntu
 
+version: ci.appveyor.0.{build}.ci
+
 build_script:
 - echo "My emscripten build"
 - mkdir -p build
@@ -14,6 +16,6 @@ install:
     - ./emsdk install latest
     - ./emsdk activate latest
     - source ./emsdk_env.sh
-    - apt install cmake
+    - sudo apt install cmake -y
     - cd $appveyor_build_folder
   
