@@ -1,7 +1,7 @@
 image:
 - Ubuntu
 
-version: ci.appveyor.0.{build}.ci
+version: ci.appveyor.0.{build}.ci.{build}
 
 build_script:
   - echo "My emscripten build"
