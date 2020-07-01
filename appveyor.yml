@@ -4,21 +4,23 @@ image:
 version: ci.appveyor.0.{build}.ci
 
 build_script:
-- echo "My emscripten build"
-- mkdir -p build
-- cd build
-- cp ../test/vaiueo2d.wav vaiueo2d.wav
-- cmake -DCMAKE_TOOLCHAIN_FILE=../emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_BUILD_TYPE=Release ..
-- make
+  - echo "My emscripten build"
+  - mkdir -p build
+  - cd build
+  - cp ../test/vaiueo2d.wav vaiueo2d.wav
+  - cmake -DCMAKE_TOOLCHAIN_FILE=../emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_BUILD_TYPE=Release ..
+  - make
 
 install:
-    - git clone https://github.com/emscripten-core/emsdk.git
-    - cd emsdk
-    - ./emsdk install latest
-    - ./emsdk activate latest
-    - source ./emsdk_env.sh
-    - sudo apt install cmake -y
-    - cd ..
-    - git submodule init
-    - git submodule update
+  - git clone https://github.com/emscripten-core/emsdk.git
+  - cd emsdk
+  - ./emsdk install latest
+  - ./emsdk activate latest  
+  - source ./emsdk_env.sh
+  - sudo apt install cmake -y
+  - cd ..
+  - git submodule init
+  - git submodule update
   
+test: 
+  - echo "Test for World.JS"
