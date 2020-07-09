@@ -46,6 +46,9 @@ Warpper:
 ```
 ### Example
 
+<details>
+<summary>Expand View full directory trees</summary>
+
 ##### WavRead_JS
 
 > .wav input functions
@@ -172,6 +175,8 @@ Warpper:
 </script>
 ```
 ![WavWrite](.github/ScreenShots/WavWrite.png)
+
+</details>
 
 ### Build World.JS
 
@@ -788,4 +793,4 @@ The File System is based on Emscripten,visit Emscripten home for more detials:
                 │      └─site_tools
                 │          └─emscripten
                 └─source-maps
-</pre></code>
+</pre></code></details>
