@@ -1,4 +1,4 @@
-<p align="center"><img width="300" src="ScreenShots/logo.png" alt="World.JS logo"></p>
+<p align="center"><img width="300" src=".github/ScreenShots/logo.png" alt="World.JS logo"></p>
 <h1 align="center">World.JS</h1>
 <p align="center">A JavaScript Wrapper for World Vocoder Powered by Emscripten</p>
 
@@ -30,15 +30,19 @@ Ubuntu:
 
 ### API
 ```
-- [x] WavRead_JS             # .wav input functions
+World Native:
+- [x] WavRead_JS             # .wav input functions.
 - [x] DIO_JS                 # F0 estimation based on DIO (Distributed Inline-filter Operation).
 - [x] Harvest_JS             # F0 estimation based on Harvest.
-- [x] DisplayInformation     # Display Information
+- [x] DisplayInformation     # Display Information.
 - [x] CheapTrick_JS          # Spectral envelope estimation on the basis of the idea of CheapTrick.
 - [x] D4C_JS                 # Band-aperiodicity estimation on the basis of the idea of D4C.
 - [X] Synthesis_JS           # Voice synthesis based on f0, spectrogram and aperiodicity.
-- [x] WavWrite_JS            # Output Wav File
-- [ ] Wav2World              # wav to world 
+- [x] WavWrite_JS            # Output Wav File.
+
+Warpper:
+- [ ] Wav2World              # Wav to world.
+- [ ] WavInJS                # Load wav file as WavRead do.
 ```
 ### Example
 
@@ -59,7 +63,7 @@ Ubuntu:
 </script>
 ```
 
-![](ScreenShots/WavRead.png)
+![](.github/ScreenShots/WavRead.png)
 
 ##### DIO_JS
 
@@ -75,7 +79,7 @@ Ubuntu:
     console.log(f0);
 </script>
 ```
-![Dio](ScreenShots/Dio.png)
+![Dio](.github/ScreenShots/Dio.png)
 
 ##### Harvest_JS
 
@@ -92,7 +96,7 @@ Ubuntu:
 </script>
 ```
 
-![Harvest](ScreenShots/Harvest.png)
+![Harvest](.github/ScreenShots/Harvest.png)
 
 ##### DisplayInformation
 
@@ -121,7 +125,7 @@ Ubuntu:
 </script>
 ```
 
-![CheapTrick](ScreenShots/CheapTrick.png)
+![CheapTrick](.github/ScreenShots/CheapTrick.png)
 
 ##### D4C_JS
 
@@ -138,7 +142,7 @@ Ubuntu:
 </script>
 ```
 
-![D4C](ScreenShots/D4C.png)
+![D4C](.github/ScreenShots/D4C.png)
 
 ##### Synthesis_JS
 
@@ -167,7 +171,7 @@ Ubuntu:
     Module.WavWrite_JS(x.x, x.fs, x.nbit, "out.wav")
 </script>
 ```
-![WavWrite](ScreenShots/WavWrite.png)
+![WavWrite](.github/ScreenShots/WavWrite.png)
 
 ### Build World.JS
 
@@ -175,10 +179,12 @@ Ubuntu:
 
 You must install these software in advance:
 
-- [Cmake](https://cmake.org/)
+- [CMake](https://cmake.org/)
 - [Python3 environment](https://www.python.org/)
 - [Emscripten SDK](https://emscripten.org/)
 - [Node](https://nodejs.org/)
+- [VSCode](https://code.visualstudio.com/)
+  - [VSCode extension: CMake Tools](https://marketplace.visualstudio.com/items?itemName=vector-of-bool.cmake-tools)
 - Software development tool chain like `make` `gcc` etc.
 
 ##### Clone Files
@@ -191,23 +197,17 @@ git submodule update
 
 ##### Set emsdk
 
-Edit it in `build.py` and change the path into your own.
+Edit it in `.vscode/settings.json` and change the path into your own.
 
-https://github.com/YuzukiTsuru/World.JS/blob/525243dc1efddd510751a98cb4caca98ce26ba17/build.py#L42
-
-```python
-"DCMAKE_TOOLCHAIN_FILE=D:\\Emscripten\\emscripten\\1.35.0\\cmake\\Modules\\Platform\\Emscripten.cmake"
+```json
+"cmake.configureArgs": ["-DCMAKE_TOOLCHAIN_FILE=~/sdk/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake"]
 ```
 
 ##### Run build script
 
-Before run it, make sure `vaiueo2d.wav` is existence in the build folder or change the `CMakeLists.txt` and delete the `preload-file`
+Before run it, make sure `vaiueo2d.wav` is existence in the build folder or change the `CMakeLists.txt` and delete the `preload-file`, this file is only for test.
 
-```bash
-python build.py
-```
-
-And the file will show in `build/WorldJS.data` `build/WorldJS.js`  `build/WorldJS.js.mem`
+And make with vscode.
 
 ### Troubleshooting
 

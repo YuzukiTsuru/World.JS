@@ -1,5 +1,6 @@
 {
     "C_Cpp.errorSquiggles": "Disabled",
     "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools",
-    "python.pythonPath": "C:\\Python38\\python.exe"
+    "python.pythonPath": "/opt/miniconda3/bin/python",
+    "cmake.configureArgs": ["-DCMAKE_TOOLCHAIN_FILE=~/sdk/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake"]
 }
