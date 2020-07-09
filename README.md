@@ -40,7 +40,7 @@ World Native:
 - [X] Synthesis_JS           # Voice synthesis based on f0, spectrogram and aperiodicity.
 - [x] WavWrite_JS            # Output Wav File.
 
-Warpper:
+Wrapper:
 - [ ] Wav2World              # Wav to world.
 - [ ] WavInJS                # Load wav file as WavRead do.
 ```
