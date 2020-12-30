@@ -1,4 +1,4 @@
-<p align="center"><img width="300" src=".github/ScreenShots/logo.png" alt="World.JS logo"></p>
+<p align="center"><img width="300" src=".github/ScreenShots/logo.v2.png" alt="World.JS logo"></p>
 <h1 align="center">World.JS</h1>
 <p align="center">A JavaScript Wrapper for World Vocoder Powered by Emscripten</p>
 
