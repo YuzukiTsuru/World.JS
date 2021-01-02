@@ -200,12 +200,17 @@ git submodule init
 git submodule update
 ```
 
-##### Set emsdk
+##### Set emsdk CMake Tool
 
+###### VSCode
 Edit it in `.vscode/settings.json` and change the path into your own.
 
 ```json
 "cmake.configureArgs": ["-DCMAKE_TOOLCHAIN_FILE=~/sdk/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake"]
+```
+###### Common Cmake
+```bash
+cmake -DCMAKE_TOOLCHAIN_FILE=~/sdk/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake ..
 ```
 
 ##### Run build script
