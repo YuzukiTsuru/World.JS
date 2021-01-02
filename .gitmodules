@@ -1,0 +1,3 @@
+[submodule "lib/WorldCMake"]
+	path = lib/WorldCMake
+	url = https://github.com/mmorise/World.git
