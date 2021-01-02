@@ -208,7 +208,7 @@ Edit it in `.vscode/settings.json` and change the path into your own.
 ```json
 "cmake.configureArgs": ["-DCMAKE_TOOLCHAIN_FILE=~/sdk/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake"]
 ```
-###### Common Cmake
+###### Common CMake
 ```bash
 cmake -DCMAKE_TOOLCHAIN_FILE=~/sdk/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake ..
 ```
