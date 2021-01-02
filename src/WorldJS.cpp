@@ -191,8 +191,7 @@ int DisplayInformation(int fs, int nbit, int x_length) {
     return ret;
 }
 
-[[maybe_unused]] val D4C_JS(val x_val, val f0_val, val time_axis_val,
-                            int fft_size, int fs) {
+[[maybe_unused]] val D4C_JS(val x_val, val f0_val, val time_axis_val, int fft_size, int fs) {
     // init val
     val ret = val::object();
     int x_length, f0_length;
@@ -209,8 +208,7 @@ int DisplayInformation(int fs, int nbit, int x_length) {
     for (int i = 0; i < f0_length; ++i) {
         aperiodicity[i] = new double[specl];
     }
-    D4C(x, x_length, fs, time_axis, f0, f0_length, fft_size, &option,
-        aperiodicity);
+    D4C(x, x_length, fs, time_axis, f0, f0_length, fft_size, &option, aperiodicity);
     ret.set("aperiodicity", Get2XArray<double>(aperiodicity, f0_length, specl));
 
     delete[] x;
@@ -220,9 +218,7 @@ int DisplayInformation(int fs, int nbit, int x_length) {
     return ret;
 }
 
-[[maybe_unused]] val Synthesis_JS(val f0_val, const val &spectral_val,
-                                  const val &aperiodicity_val, int fft_size,
-                                  int fs, const val &frame_period) {
+[[maybe_unused]] val Synthesis_JS(val f0_val, const val &spectral_val, const val &aperiodicity_val, int fft_size, int fs, const val &frame_period) {
     // Synthesis Audio
     int f0_length;
     double framePeriodVal;
@@ -230,11 +226,9 @@ int DisplayInformation(int fs, int nbit, int x_length) {
     auto f0 = GetPtrFrom1XArray<double>(std::move(f0_val), &f0_length);
     double **spectrogram = GetPtrFrom2XArray<double>(spectral_val);
     double **aperiodicity = GetPtrFrom2XArray<double>(aperiodicity_val);
-    int y_length =
-            static_cast<int>((f0_length - 1) * framePeriodVal / 1000.0 * fs) + 1;
+    int y_length = static_cast<int>((f0_length - 1) * framePeriodVal / 1000.0 * fs) + 1;
     auto y = new double[y_length];
-    Synthesis(f0, f0_length, spectrogram, aperiodicity, fft_size, framePeriodVal,
-              fs, y_length, y);
+    Synthesis(f0, f0_length, spectrogram, aperiodicity, fft_size, framePeriodVal, fs, y_length, y);
     val ret = Get1XArray<double>(y, y_length);
 
     delete[] f0;
@@ -244,8 +238,7 @@ int DisplayInformation(int fs, int nbit, int x_length) {
     return ret;
 }
 
-[[maybe_unused]] val WavWrite_JS(val y_val, int fs,
-                                 const std::string &filename) {
+[[maybe_unused]] val WavWrite_JS(val y_val, int fs, const std::string &filename) {
     // init
     int y_length;
     auto y = GetPtrFrom1XArray<double>(std::move(y_val), &y_length);
