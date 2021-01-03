@@ -25,9 +25,9 @@ Morise's World Vocoder is a fast and high-quality vocoder. World Vocoder paramet
 For more information, please visit [Morise's World repository](https://github.com/mmorise/World) and the [official website of World Vocoder](http://www.kisc.meiji.ac.jp/~mmorise/world/english/)
 
 ### Build Status with AppVeyor CI
-master | develop
----|---
-[![Build status](https://ci.appveyor.com/api/projects/status/6vbge2p0q0mdshtc/branch/master?svg=true)](https://ci.appveyor.com/project/GloomyGhost-MosquitoCoil/world-js/branch/master)|[![Build status](https://ci.appveyor.com/api/projects/status/6vbge2p0q0mdshtc?svg=true)](https://ci.appveyor.com/project/GloomyGhost-MosquitoCoil/world-js)
+| master | develop |
+|---|---|
+|[![Build status](https://ci.appveyor.com/api/projects/status/6vbge2p0q0mdshtc/branch/master?svg=true)](https://ci.appveyor.com/project/GloomyGhost-MosquitoCoil/world-js/branch/master)|[![Build status](https://ci.appveyor.com/api/projects/status/6vbge2p0q0mdshtc?svg=true)](https://ci.appveyor.com/project/GloomyGhost-MosquitoCoil/world-js)|
 
 ### API
 ```
@@ -46,9 +46,6 @@ Wrapper:
 - [ ] WavInJS                # Load wav file as WavRead do.
 ```
 ### Example
-
-<details>
-<summary>Expand View full directory trees</summary>
 
 ##### WavRead_JS
 
@@ -176,8 +173,6 @@ Wrapper:
 </script>
 ```
 ![WavWrite](.github/ScreenShots/WavWrite.png)
-
-</details>
 
 ### Build World.JS
 
