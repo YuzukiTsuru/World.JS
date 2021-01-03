@@ -21,7 +21,7 @@ jobs:
     
     - name: Copy test File
       working-directory: ${{runner.workspace}}/build
-      run: cp ${{runner.workspace}}/test/vaiueo2d.wav vaiueo2d.wav
+      run: ls && cp ${{runner.workspace}}/test/vaiueo2d.wav vaiueo2d.wav
 
     - name: Configure CMake
       shell: bash
