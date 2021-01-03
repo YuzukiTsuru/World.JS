@@ -24,9 +24,10 @@ Morise's World Vocoder is a fast and high-quality vocoder. World Vocoder paramet
 
 For more information, please visit [Morise's World repository](https://github.com/mmorise/World) and the [official website of World Vocoder](http://www.kisc.meiji.ac.jp/~mmorise/world/english/)
 
-### Build Status
-Ubuntu: 
-[![Build status](https://ci.appveyor.com/api/projects/status/6vbge2p0q0mdshtc?svg=true)](https://ci.appveyor.com/project/GloomyGhost-MosquitoCoil/world-js)
+### Build Status with AppVeyor CI
+master | develop
+---|---
+[![Build status](https://ci.appveyor.com/api/projects/status/6vbge2p0q0mdshtc/branch/master?svg=true)](https://ci.appveyor.com/project/GloomyGhost-MosquitoCoil/world-js/branch/master)|[![Build status](https://ci.appveyor.com/api/projects/status/6vbge2p0q0mdshtc?svg=true)](https://ci.appveyor.com/project/GloomyGhost-MosquitoCoil/world-js)
 
 ### API
 ```
@@ -215,7 +216,7 @@ cmake -DCMAKE_TOOLCHAIN_FILE=~/sdk/emsdk/upstream/emscripten/cmake/Modules/Platf
 
 ##### Run build script
 
-Before run it, make sure `vaiueo2d.wav` is existence in the build folder or change the `CMakeLists.txt` and delete the `preload-file`, this file is only for test.
+Before run it, make sure `vaiueo2d.wav` is existence in the build folder. **OR** change the `CMakeLists.txt` and delete the `preload-file`, this file is only for test.
 
 And make with vscode.
 
