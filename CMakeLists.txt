@@ -30,9 +30,11 @@ file(GLOB sources src/*.cpp)
 file(GLOB tools tools/*.cpp)
 file(GLOB Module src/WorldJSModule/*.cpp)
 file(GLOB World lib/WorldCMake/src/*.cpp)
+file(GLOB Wav2World src/Wav2World/*.cpp)
 
 add_library(tools ${tools})
 add_library(World ${World})
+add_library(Wav2World ${Wav2World})
 
 add_executable(WorldJS ${sources} ${Module})
 
