@@ -1,70 +1,16 @@
-﻿#include <string>
-#include <utility>
+﻿//
+// Created by YuzukiTsuru on 2019/7/14.
+//
 
+#include <iostream>
+
+#include <emscripten.h>
 #include <emscripten/bind.h>
 
 #include "audioio.h"
 
 #include "WorldJS.h"
-
-using namespace emscripten;
-
-namespace {
-    template<class Type>
-    val Get1XArray(Type *arr, int len) {
-        return val(typed_memory_view(len, arr));
-    }
-
-    template<class Type>
-    val Get2XArray(Type **arr, int y_len, int x_len) {
-        val arr2x = val::array();
-        for (int i = 0; i < y_len; i++) {
-            arr2x.set(i, Get1XArray<Type>(arr[i], x_len));
-        }
-        return arr2x;
-    }
-
-    template<class Type>
-    Type *GetPtrFrom1XArray(val arr, int *len = nullptr) {
-        if (len == nullptr) {
-            len = new int[1];
-        }
-        *len = arr["length"].as<int>();
-        Type *ret = new Type[*len];
-        val module = val::global("Module");
-        int ptr = (int) ret / sizeof(Type);
-        module["HEAPF64"].call<val>("set", arr, val(ptr));
-        return ret;
-    }
-
-    template<class Type>
-    Type **GetPtrFrom2XArray(const val &arr, int *y_len = nullptr, int *x_len = nullptr) {
-        if (y_len == nullptr) {
-            y_len = new int[1];
-        }
-        if (x_len == nullptr) {
-            x_len = new int[1];
-        }
-
-        *y_len = arr["length"].as<int>();
-
-        val module = val::global("Module");
-        int ptr;
-        if (*y_len > 0) {
-            *x_len = arr[0]["length"].as<int>();
-            Type **ret = new Type *[*y_len];
-            for (int i = 0; i < *y_len; i++) {
-                ret[i] = new Type[*x_len];
-                ptr = (int) ret[i] / sizeof(Type);
-                module["HEAPF64"].call<val>("set", arr[i], val(ptr));
-            }
-            return ret;
-        } else {
-            *x_len = 0;
-            return nullptr;
-        }
-    }
-} // namespace
+#include "Converter.h"
 
 int DisplayInformation(int fs, int nbit, int x_length) {
     printf("File information\n");
@@ -75,9 +21,9 @@ int DisplayInformation(int fs, int nbit, int x_length) {
 }
 
 // WavFile Read
-val WavRead_JS(const std::string &filename) {
+emscripten::val WavRead_JS(const std::string &filename) {
     // init val
-    val InWav = val::object();
+    emscripten::val InWav = emscripten::val::object();
     // Get File Name
     const char *f = filename.c_str();
     int fs, nbit;
@@ -95,9 +41,9 @@ val WavRead_JS(const std::string &filename) {
     return InWav;
 }
 
-val Dio_JS(val x_val, int fs, double frame_period) {
+emscripten::val Dio_JS(emscripten::val x_val, int fs, double frame_period) {
     // init val
-    val ret = val::object();
+    emscripten::val ret = emscripten::val::object();
     int x_length;
     // translate array to C++ ptr
     auto x = GetPtrFrom1XArray<double>(std::move(x_val), &x_length);
@@ -131,9 +77,9 @@ val Dio_JS(val x_val, int fs, double frame_period) {
     return ret;
 }
 
-val Harvest_JS(val x_val, int fs, double frame_period) {
+emscripten::val Harvest_JS(emscripten::val x_val, int fs, double frame_period) {
     // init val
-    val ret = val::object();
+    emscripten::val ret = emscripten::val::object();
     // init
     int x_length;
     // translate array to C++ ptr
@@ -160,9 +106,9 @@ val Harvest_JS(val x_val, int fs, double frame_period) {
     return ret;
 }
 
-val CheapTrick_JS(val x_val, val f0_val, val time_axis_val, int fs) {
+emscripten::val CheapTrick_JS(emscripten::val x_val, emscripten::val f0_val, emscripten::val time_axis_val, int fs) {
     // init val
-    val ret = val::object();
+    emscripten::val ret = emscripten::val::object();
     int x_length, f0_length;
     // translate array to C++ ptr
     auto x = GetPtrFrom1XArray<double>(std::move(x_val), &x_length);
@@ -189,9 +135,9 @@ val CheapTrick_JS(val x_val, val f0_val, val time_axis_val, int fs) {
     return ret;
 }
 
-val D4C_JS(val x_val, val f0_val, val time_axis_val, int fft_size, int fs) {
+emscripten::val D4C_JS(emscripten::val x_val, emscripten::val f0_val, emscripten::val time_axis_val, int fft_size, int fs) {
     // init val
-    val ret = val::object();
+    emscripten::val ret = emscripten::val::object();
     int x_length, f0_length;
     // translate array to C++ ptr
     auto x = GetPtrFrom1XArray<double>(std::move(x_val), &x_length);
@@ -216,7 +162,7 @@ val D4C_JS(val x_val, val f0_val, val time_axis_val, int fft_size, int fs) {
     return ret;
 }
 
-val Synthesis_JS(val f0_val, const val &spectral_val, const val &aperiodicity_val, int fft_size, int fs, const val &frame_period) {
+emscripten::val Synthesis_JS(emscripten::val f0_val, const emscripten::val &spectral_val, const emscripten::val &aperiodicity_val, int fft_size, int fs, const emscripten::val &frame_period) {
     // Synthesis Audio
     int f0_length;
     double framePeriodVal;
@@ -227,7 +173,7 @@ val Synthesis_JS(val f0_val, const val &spectral_val, const val &aperiodicity_va
     int y_length = static_cast<int>((f0_length - 1) * framePeriodVal / 1000.0 * fs) + 1;
     auto y = new double[y_length];
     Synthesis(f0, f0_length, spectrogram, aperiodicity, fft_size, framePeriodVal, fs, y_length, y);
-    val ret = Get1XArray<double>(y, y_length);
+    emscripten::val ret = Get1XArray<double>(y, y_length);
 
     delete[] f0;
     delete[] spectrogram;
@@ -236,15 +182,15 @@ val Synthesis_JS(val f0_val, const val &spectral_val, const val &aperiodicity_va
     return ret;
 }
 
-val WavWrite_JS(val y_val, int fs, const std::string &filename) {
+emscripten::val WavWrite_JS(emscripten::val y_val, int fs, const std::string &filename) {
     // init
     int y_length;
     auto y = GetPtrFrom1XArray<double>(std::move(y_val), &y_length);
     wavwrite(y, y_length, fs, 16, filename.c_str());
-    return val(y_length);
+    return emscripten::val(y_length);
 }
 
-val Wav2World(const std::string &fileName) {
+emscripten::val Wav2World(const std::string &fileName) {
     // TODO
     // init return val
     // Get File Name
@@ -256,12 +202,13 @@ val Wav2World(const std::string &fileName) {
     // Use tools/audioio.cpp wavread function
     wavread(f, &fs, &nbit, x);
 
-    return val(x);
+    return emscripten::val(x);
 }
 
 //-----------------------------------------------------------------------------
 // The JavaScript API for C++
 //-----------------------------------------------------------------------------
+EMSCRIPTEN_KEEPALIVE
 EMSCRIPTEN_BINDINGS(WorldJS) {
     emscripten::function("DisplayInformation", &DisplayInformation);
     emscripten::function("WavRead_JS", &WavRead_JS);
