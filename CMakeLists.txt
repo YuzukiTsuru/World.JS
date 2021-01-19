@@ -40,3 +40,7 @@ add_executable(WorldJS ${sources} ${Module})
 
 set_target_properties(WorldJS PROPERTIES LINK_FLAGS ${flag})
 target_link_libraries(WorldJS tools World)
+
+# Copy Files
+add_custom_command(TARGET WorldJS POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different "${CMAKE_SOURCE_DIR}/test/index.html" ${CMAKE_BINARY_DIR})
+add_custom_command(TARGET WorldJS PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different "${CMAKE_SOURCE_DIR}/test/vaiueo2d.wav" ${CMAKE_BINARY_DIR})

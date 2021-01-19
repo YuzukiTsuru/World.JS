@@ -38,8 +38,7 @@ namespace {
     }
 
     template<class Type>
-    Type **GetPtrFrom2XArray(const val &arr, int *y_len = nullptr,
-                             int *x_len = nullptr) {
+    Type **GetPtrFrom2XArray(const val &arr, int *y_len = nullptr, int *x_len = nullptr) {
         if (y_len == nullptr) {
             y_len = new int[1];
         }
@@ -76,7 +75,7 @@ int DisplayInformation(int fs, int nbit, int x_length) {
 }
 
 // WavFile Read
-[[maybe_unused]] val WavRead_JS(const std::string &filename) {
+val WavRead_JS(const std::string &filename) {
     // init val
     val InWav = val::object();
     // Get File Name
@@ -96,7 +95,7 @@ int DisplayInformation(int fs, int nbit, int x_length) {
     return InWav;
 }
 
-[[maybe_unused]] val Dio_JS(val x_val, int fs, double frame_period) {
+val Dio_JS(val x_val, int fs, double frame_period) {
     // init val
     val ret = val::object();
     int x_length;
@@ -132,7 +131,7 @@ int DisplayInformation(int fs, int nbit, int x_length) {
     return ret;
 }
 
-[[maybe_unused]] val Harvest_JS(val x_val, int fs, double frame_period) {
+val Harvest_JS(val x_val, int fs, double frame_period) {
     // init val
     val ret = val::object();
     // init
@@ -161,8 +160,7 @@ int DisplayInformation(int fs, int nbit, int x_length) {
     return ret;
 }
 
-[[maybe_unused]] val CheapTrick_JS(val x_val, val f0_val, val time_axis_val,
-                                   int fs) {
+val CheapTrick_JS(val x_val, val f0_val, val time_axis_val, int fs) {
     // init val
     val ret = val::object();
     int x_length, f0_length;
@@ -191,7 +189,7 @@ int DisplayInformation(int fs, int nbit, int x_length) {
     return ret;
 }
 
-[[maybe_unused]] val D4C_JS(val x_val, val f0_val, val time_axis_val, int fft_size, int fs) {
+val D4C_JS(val x_val, val f0_val, val time_axis_val, int fft_size, int fs) {
     // init val
     val ret = val::object();
     int x_length, f0_length;
@@ -218,7 +216,7 @@ int DisplayInformation(int fs, int nbit, int x_length) {
     return ret;
 }
 
-[[maybe_unused]] val Synthesis_JS(val f0_val, const val &spectral_val, const val &aperiodicity_val, int fft_size, int fs, const val &frame_period) {
+val Synthesis_JS(val f0_val, const val &spectral_val, const val &aperiodicity_val, int fft_size, int fs, const val &frame_period) {
     // Synthesis Audio
     int f0_length;
     double framePeriodVal;
@@ -238,7 +236,7 @@ int DisplayInformation(int fs, int nbit, int x_length) {
     return ret;
 }
 
-[[maybe_unused]] val WavWrite_JS(val y_val, int fs, const std::string &filename) {
+val WavWrite_JS(val y_val, int fs, const std::string &filename) {
     // init
     int y_length;
     auto y = GetPtrFrom1XArray<double>(std::move(y_val), &y_length);
@@ -246,7 +244,7 @@ int DisplayInformation(int fs, int nbit, int x_length) {
     return val(y_length);
 }
 
-[[maybe_unused]] val Wav2World(const std::string &fileName) {
+val Wav2World(const std::string &fileName) {
     // TODO
     // init return val
     // Get File Name
@@ -264,7 +262,7 @@ int DisplayInformation(int fs, int nbit, int x_length) {
 //-----------------------------------------------------------------------------
 // The JavaScript API for C++
 //-----------------------------------------------------------------------------
-[[maybe_unused]] EMSCRIPTEN_BINDINGS(WorldJS) {
+EMSCRIPTEN_BINDINGS(WorldJS) {
     emscripten::function("DisplayInformation", &DisplayInformation);
     emscripten::function("WavRead_JS", &WavRead_JS);
     emscripten::function("Dio_JS", &Dio_JS);

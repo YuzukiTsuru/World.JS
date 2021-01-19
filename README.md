@@ -196,24 +196,40 @@ git submodule init
 git submodule update
 ```
 
-##### Set emsdk CMake Tool
+##### Set emsdk CMake Tool and Configure the compilation environment
 
 ###### VSCode
 Edit it in `.vscode/settings.json` and change the path into your own.
 
-```json
-"cmake.configureArgs": ["-DCMAKE_TOOLCHAIN_FILE=~/sdk/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake"]
+```yaml
+"cmake.configureArgs": ["-DCMAKE_TOOLCHAIN_FILE=path/to/Emscripten.cmake"]
 ```
 ###### Common CMake
+
+Use the `CMAKE_TOOLCHAIN_FILE` parameter during `cmake` command.
+
+example:
 ```bash
-cmake -DCMAKE_TOOLCHAIN_FILE=~/sdk/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake ..
+mkdir build && cd build
+cmake -DCMAKE_TOOLCHAIN_FILE=the/path/to/Emscripten.cmake ..
 ```
 
 ##### Run build script
 
-Before run it, make sure `vaiueo2d.wav` is existence in the build folder. **OR** change the `CMakeLists.txt` and delete the `preload-file`, this file is only for test.
+Before run it, make sure `vaiueo2d.wav` is existence in the build folder.  **OR** change the `CMakeLists.txt` and delete the `preload-file`, this file is only for test.
 
-And make with vscode.
+###### For VSCode
+
+After setting `cmake.configureArgs` in your VSCode settings file :`.vscode/settings.json`, click the compile button.
+
+###### For CMake
+
+After Configure the compilation environment, just `make`
+
+```bash
+cd build
+make
+```
 
 ### Troubleshooting
 
@@ -224,7 +240,7 @@ Access to XMLHttpRequest at 'file:///World.JS/test/WorldJS.data' from origin 'nu
 WorldJS.js:15 Uncaught could not load memory initializer WorldJS.js.mem
 ```
 
-Unfortunately several browsers (including *Chrome*, *Safari*, and *Internet Explorer*) do not support `file://` XHRrequests, and can’t load extra files needed by the HTML (like a `.mem` file, or packaged file data as mentioned lower down). For these browsers you’ll need to serve the files using a webserver. The easiest way to do this is to use the python **HTTPServer** (in the current directory do `python -m SimpleHTTPServer` (Python2)  ` python -m http.server` (python3) and then open `http://localhost:8000`).
+Unfortunately several browsers (including *Chrome*, *Safari*, and *Internet Explorer*) do not support `file://` XHRrequests, and can’t load extra files needed by the HTML (like a `.mem` file, or packaged file `data` as mentioned lower down). For these browsers you’ll need to serve the files using a webserver. The easiest way to do this is to use the python **HTTPServer** (in the current directory do `python -m SimpleHTTPServer` (Python2)  ` python -m http.server` (python3) and then open `http://localhost:8000`). And emscripten also provide `emrun` to run such code. Document here [Running HTML files with emrun](https://emscripten.org/docs/compiling/Running-html-files-with-emrun.html)
 
 ### File System Develop
 
