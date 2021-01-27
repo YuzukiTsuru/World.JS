@@ -14,7 +14,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - uses: mymindstorm/setup-emsdk@v7
+    - name: Checkout submodules
+      uses: textbook/git-checkout-submodule-action@master
+    
+    - name: Add emsdk
+      uses: mymindstorm/setup-emsdk@v7
       with:
         version: ${{env.EM_VERSION}}
         actions-cache-folder: ${{env.EM_CACHE_FOLDER}}
