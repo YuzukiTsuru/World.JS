@@ -11,16 +11,18 @@
 
 #include "WorldJS.h"
 #include "Converter.h"
+#include "Wav2World.h"
 
-int DisplayInformation(int fs, int nbit, int x_length) {
-    printf("File information\n");
-    printf("Sampling : %d Hz %d Bit\n", fs, nbit);
-    printf("Length %d [sample]\n", x_length);
-    printf("Length %f [sec]\n", static_cast<double>(x_length) / fs);
-    return 0;
+EMSCRIPTEN_KEEPALIVE
+void DisplayInformation(int fs, int nbit, int x_length) {
+    std::cout << "File information" << std::endl;
+    std::cout << "Sampling : " << fs << " Hz " << nbit << " Bit" << std::endl;
+    std::cout << "Length " << x_length << "[sample]" << std::endl;
+    std::cout << "Length " << static_cast<double>(x_length) / fs << " [sec]" << std::endl;
 }
 
 // WavFile Read
+EMSCRIPTEN_KEEPALIVE
 emscripten::val WavRead_JS(const std::string &filename) {
     // init val
     emscripten::val InWav = emscripten::val::object();
@@ -41,6 +43,7 @@ emscripten::val WavRead_JS(const std::string &filename) {
     return InWav;
 }
 
+EMSCRIPTEN_KEEPALIVE
 emscripten::val Dio_JS(emscripten::val x_val, int fs, double frame_period) {
     // init val
     emscripten::val ret = emscripten::val::object();
@@ -77,6 +80,7 @@ emscripten::val Dio_JS(emscripten::val x_val, int fs, double frame_period) {
     return ret;
 }
 
+EMSCRIPTEN_KEEPALIVE
 emscripten::val Harvest_JS(emscripten::val x_val, int fs, double frame_period) {
     // init val
     emscripten::val ret = emscripten::val::object();
@@ -106,6 +110,7 @@ emscripten::val Harvest_JS(emscripten::val x_val, int fs, double frame_period) {
     return ret;
 }
 
+EMSCRIPTEN_KEEPALIVE
 emscripten::val CheapTrick_JS(emscripten::val x_val, emscripten::val f0_val, emscripten::val time_axis_val, int fs) {
     // init val
     emscripten::val ret = emscripten::val::object();
@@ -135,6 +140,7 @@ emscripten::val CheapTrick_JS(emscripten::val x_val, emscripten::val f0_val, ems
     return ret;
 }
 
+EMSCRIPTEN_KEEPALIVE
 emscripten::val D4C_JS(emscripten::val x_val, emscripten::val f0_val, emscripten::val time_axis_val, int fft_size, int fs) {
     // init val
     emscripten::val ret = emscripten::val::object();
@@ -162,6 +168,7 @@ emscripten::val D4C_JS(emscripten::val x_val, emscripten::val f0_val, emscripten
     return ret;
 }
 
+EMSCRIPTEN_KEEPALIVE
 emscripten::val Synthesis_JS(emscripten::val f0_val, const emscripten::val &spectral_val, const emscripten::val &aperiodicity_val, int fft_size, int fs, const emscripten::val &frame_period) {
     // Synthesis Audio
     int f0_length;
@@ -182,6 +189,7 @@ emscripten::val Synthesis_JS(emscripten::val f0_val, const emscripten::val &spec
     return ret;
 }
 
+EMSCRIPTEN_KEEPALIVE
 emscripten::val WavWrite_JS(emscripten::val y_val, int fs, const std::string &filename) {
     // init
     int y_length;
@@ -190,7 +198,8 @@ emscripten::val WavWrite_JS(emscripten::val y_val, int fs, const std::string &fi
     return emscripten::val(y_length);
 }
 
-emscripten::val Wav2World(const std::string &fileName) {
+EMSCRIPTEN_KEEPALIVE
+emscripten::val W2World(const std::string &fileName) {
     // TODO
     // init return val
     // Get File Name
@@ -202,7 +211,9 @@ emscripten::val Wav2World(const std::string &fileName) {
     // Use tools/audioio.cpp wavread function
     wavread(f, &fs, &nbit, x);
 
-    return emscripten::val(x);
+    Wav2World(x, x_length);
+
+    return emscripten::val(x_length);
 }
 
 //-----------------------------------------------------------------------------
@@ -218,5 +229,5 @@ EMSCRIPTEN_BINDINGS(WorldJS) {
     emscripten::function("D4C_JS", &D4C_JS);
     emscripten::function("Synthesis_JS", &Synthesis_JS);
     emscripten::function("WavWrite_JS", &WavWrite_JS);
-    emscripten::function("Wav2World", &Wav2World);
+    emscripten::function("Wav2World", &W2World);
 }

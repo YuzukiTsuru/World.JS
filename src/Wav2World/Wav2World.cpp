@@ -4,18 +4,9 @@
 
 #include <iostream>
 
-#include "WorldJS.h"
-
 #include "Wav2World.h"
 
-[[maybe_unused]] Wav2World::Wav2World(const std::string fileName) {
-
-}
-
-Wav2World::Wav2World(int *x, int x_length) {
-
-}
-
-Wav2World::~Wav2World() {
-
+Wav2World::Wav2World(double *x, int x_length) {
+    WorldModule worldModule(x, x_length);
+    worldPara = worldModule.GetModule();
 }
