@@ -44,7 +44,7 @@ jobs:
       - name: Zip The Build
         uses: montudor/action-zip@v0.1.1
         with:
-          args: zip -qq -r release.zip ${{github.workspace}}/build
+          args: zip -qq -r release.zip . -i ${{github.workspace}}/build
         
         
       - name: Create Release
