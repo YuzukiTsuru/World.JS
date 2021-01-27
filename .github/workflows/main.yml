@@ -17,6 +17,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         
+      - name: Checkout submodules
+        uses: textbook/git-checkout-submodule-action@master
+        
       - uses: mymindstorm/setup-emsdk@v7
         with:
           version: ${{env.EM_VERSION}}
