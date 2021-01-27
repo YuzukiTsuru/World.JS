@@ -10,7 +10,19 @@
 
 class Wav2World {
 public:
-    Wav2World(double *x, int x_length);
+    Wav2World(double *x, int x_length, int fs);
+
+    [[nodiscard]] double *GetF0() const;
+
+    [[nodiscard]] double *GetTimeAxis() const;
+
+    [[nodiscard]] double **GetSP() const;
+
+    [[nodiscard]] double **GetAP() const;
+
+    [[nodiscard]] int GetF0Length() const;
+
+    [[nodiscard]] int GetFFTSize() const;
 
 private:
     WorldPara worldPara;

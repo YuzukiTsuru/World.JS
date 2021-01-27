@@ -9,7 +9,7 @@
 
 class WorldModule {
 public:
-    WorldModule(double *x, int x_length);
+    WorldModule(double *x, int x_length, int fs);
 
     ~WorldModule();
 

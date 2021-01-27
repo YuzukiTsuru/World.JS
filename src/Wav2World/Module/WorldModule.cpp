@@ -98,12 +98,14 @@ WorldPara WorldModule::AperiodicityEstimation() {
     return worldPara;
 }
 
-WorldModule::WorldModule(double *x, int x_length) {
-    x = x;
-    x_length = x_length;
-    worldPara = F0EstimationDio();
-    worldPara = SpectralEnvelopeEstimation();
-    worldPara = AperiodicityEstimation();
+WorldModule::WorldModule(double *x, int x_length, int fs) {
+    this->x = x;
+    this->x_length = x_length;
+    worldPara.fs = fs;
+    worldPara.frame_period = 5.0;
+    F0EstimationDio();
+    SpectralEnvelopeEstimation();
+    AperiodicityEstimation();
 }
 
 WorldModule::~WorldModule() {

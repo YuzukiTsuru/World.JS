@@ -211,15 +211,25 @@ emscripten::val W2World(const std::string &fileName) {
     // Use tools/audioio.cpp wavread function
     wavread(f, &fs, &nbit, x);
 
-    Wav2World(x, x_length);
+    Wav2World wav2World(x, x_length, fs);
 
-    return emscripten::val(x_length);
+    emscripten::val ret = emscripten::val::object();
+    ret.set("x", Get1XArray<double>(x, x_length));
+    ret.set("fs", fs);
+    ret.set("nbit", nbit);
+    ret.set("x_length", x_length);
+    ret.set("f0", Get1XArray<double>(wav2World.GetF0(), wav2World.GetF0Length()));
+    ret.set("time_axis", Get1XArray<double>(wav2World.GetTimeAxis(), wav2World.GetF0Length()));
+    ret.set("fft_size", wav2World.GetFFTSize());
+    int specl = wav2World.GetFFTSize() / 2 + 1;
+    ret.set("spectral", Get2XArray<double>(wav2World.GetSP(), wav2World.GetF0Length(), specl));
+    ret.set("aperiodicity", Get2XArray<double>(wav2World.GetAP(), wav2World.GetF0Length(), specl));
+    return ret;
 }
 
 //-----------------------------------------------------------------------------
 // The JavaScript API for C++
 //-----------------------------------------------------------------------------
-EMSCRIPTEN_KEEPALIVE
 EMSCRIPTEN_BINDINGS(WorldJS) {
     emscripten::function("DisplayInformation", &DisplayInformation);
     emscripten::function("WavRead_JS", &WavRead_JS);

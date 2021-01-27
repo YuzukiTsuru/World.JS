@@ -37,6 +37,7 @@ file(GLOB Wav2World src/Wav2World/*.cpp)
 add_library(tools ${tools})
 add_library(World ${World})
 add_library(Wav2World ${Wav2World} ${W2WModule})
+target_link_libraries(Wav2World World)
 
 add_executable(WorldJS ${sources} ${Module})
 
@@ -48,4 +49,4 @@ add_custom_command(TARGET WorldJS POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if
 add_custom_command(TARGET WorldJS PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different "${CMAKE_SOURCE_DIR}/test/vaiueo2d.wav" ${CMAKE_BINARY_DIR})
 
 add_executable(temp_test test/temp_test.cpp)
-target_link_libraries(temp_test tools World Wav2World)
+target_link_libraries(temp_test tools Wav2World)

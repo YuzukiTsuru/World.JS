@@ -42,8 +42,8 @@ World Native:
 - [x] WavWrite_JS            # Output Wav File.
 
 Wrapper:
-- [ ] Wav2World              # Wav to world.
-- [ ] WavInJS                # Load wav file as WavRead do.
+- [x] Wav2World              # Wav to world.
+- [ ] WavInJS                # Load wav file as WavRead do in JavaScript.
 ```
 ### Example
 
@@ -173,6 +173,18 @@ Wrapper:
 </script>
 ```
 ![WavWrite](.github/ScreenShots/WavWrite.png)
+
+##### Wav2World
+
+> Wav to world
+
+```html
+<script src="WorldJS.js"></script> 
+<script>
+    Module.W2World("vaiueo2d.wav");
+</script>
+```
+![WavWrite](.github/ScreenShots/W2W.png)
 
 ### Build World.JS
 
