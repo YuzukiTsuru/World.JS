@@ -1,6 +1,7 @@
 <p align="center"><img width="300" src=".github/ScreenShots/logo.v3.png" alt="World.JS logo"></p>
 <h1 align="center">World.JS</h1>
 <p align="center">A JavaScript Wrapper for World Vocoder Powered by Emscripten</p>
+<p align="center"><img src="https://github.com/YuzukiTsuru/World.JS/workflows/CMake/badge.svg"></p>
 
 ### About World.JS
 
