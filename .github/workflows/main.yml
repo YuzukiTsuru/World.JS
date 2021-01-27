@@ -41,10 +41,12 @@ jobs:
         shell: bash
         run: cmake --build . --config $BUILD_TYPE
         
-      - name: Zip The Build
+      - name: Install zip
         uses: montudor/action-zip@v0.1.1
-        with:
-          args: zip -qq -r release.zip . -i ${{github.workspace}}/build
+        
+      - name: Zip The Build
+        working-directory: ${{github.workspace}}/build
+        run: zip -qq -r release.zip build/World.js build/World.wasm
         
         
       - name: Create Release
@@ -55,8 +57,6 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
-          body: |
-            Update
           draft: false
           prerelease: false
           
