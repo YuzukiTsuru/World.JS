@@ -181,7 +181,7 @@ Wrapper:
 ```html
 <script src="WorldJS.js"></script> 
 <script>
-    Module.W2World("vaiueo2d.wav");
+    Module.Wav2World("vaiueo2d.wav");
 </script>
 ```
 ![WavWrite](.github/ScreenShots/W2W.png)
