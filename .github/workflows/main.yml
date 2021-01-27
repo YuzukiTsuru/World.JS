@@ -1,7 +1,7 @@
-on:
-  push:
-    tags:
-      - 'v*'
+on: push
+  #push:
+   # tags:
+    #  - 'v*'
       
 env:
   BUILD_TYPE: Release
@@ -46,8 +46,7 @@ jobs:
         
       - name: Zip The Build
         working-directory: ${{github.workspace}}/build
-        run: zip -qq -r release.zip build/World.js build/World.wasm
-        
+        run: zip -qq -r release.zip WorldJS.js WorldJS.wasm
         
       - name: Create Release
         id: create_release
