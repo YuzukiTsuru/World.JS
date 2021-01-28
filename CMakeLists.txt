@@ -43,6 +43,7 @@ include_directories(
 )
 
 file(GLOB sources src/*.cpp)
+file(GLOB WorldJS src/WorldJS/*.cpp)
 file(GLOB tools tools/*.cpp)
 file(GLOB W2WModule src/Wav2World/Module/*.cpp)
 file(GLOB World lib/WorldCMake/src/*.cpp)
@@ -54,7 +55,7 @@ add_library(Wav2World ${Wav2World} ${W2WModule})
 target_link_libraries(Wav2World World)
 
 # World.JS
-add_executable(WorldJS ${sources} ${Module})
+add_executable(WorldJS ${sources} ${WorldJS} ${Module})
 set_target_properties(WorldJS PROPERTIES LINK_FLAGS ${flag} DEBUG_POSTFIX "d")
 target_link_libraries(WorldJS tools World Wav2World)
 

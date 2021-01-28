@@ -25,8 +25,7 @@ WorldPara WorldModule::F0EstimationDio() {
     option.allowed_range = 0.1;
 
     // Parameters setting and memory allocation.
-    worldPara.f0_length = GetSamplesForDIO(worldPara.fs,
-                                           x_length, worldPara.frame_period);
+    worldPara.f0_length = GetSamplesForDIO(worldPara.fs, x_length, worldPara.frame_period);
     worldPara.f0 = new double[worldPara.f0_length];
     worldPara.time_axis = new double[worldPara.f0_length];
     auto *refined_f0 = new double[worldPara.f0_length];

@@ -10,6 +10,8 @@
 #include "audioio.h"
 
 #include "WorldJS.h"
+
+#include "ErrorCode.h"
 #include "Converter.h"
 #include "Wav2World.h"
 
@@ -31,6 +33,10 @@ emscripten::val WavRead_JS(const std::string &filename) {
     int fs, nbit;
     // GetAudioLength for read
     int x_length = GetAudioLength(f);
+    if (x_length == 0){
+        emscripten_log(EM_LOG_ERROR, E00);
+        EM_TERM();
+    }
     auto x = new double[x_length];
     // Use tools/audioio.cpp wavread function
     wavread(f, &fs, &nbit, x);
@@ -50,6 +56,11 @@ emscripten::val Dio_JS(emscripten::val x_val, int fs, double frame_period) {
     int x_length;
     // translate array to C++ ptr
     auto x = GetPtrFrom1XArray<double>(std::move(x_val), &x_length);
+    if(x_length == 0){
+        emscripten_log(EM_LOG_ERROR, E01);
+        EM_TERM();
+    }
+
     // init dio
     DioOption option = {0};
     InitializeDioOption(&option);
@@ -88,6 +99,10 @@ emscripten::val Harvest_JS(emscripten::val x_val, int fs, double frame_period) {
     int x_length;
     // translate array to C++ ptr
     auto x = GetPtrFrom1XArray<double>(std::move(x_val), &x_length);
+    if(x_length == 0){
+        emscripten_log(EM_LOG_ERROR, E01);
+        EM_TERM();
+    }
     // init Harvest Option
     HarvestOption option = {0};
     InitializeHarvestOption(&option);
@@ -117,6 +132,10 @@ emscripten::val CheapTrick_JS(emscripten::val x_val, emscripten::val f0_val, ems
     int x_length, f0_length;
     // translate array to C++ ptr
     auto x = GetPtrFrom1XArray<double>(std::move(x_val), &x_length);
+    if(x_length == 0){
+        emscripten_log(EM_LOG_ERROR, E01);
+        EM_TERM();
+    }
     auto f0 = GetPtrFrom1XArray<double>(std::move(f0_val), &f0_length);
     auto time_axis = GetPtrFrom1XArray<double>(std::move(time_axis_val));
     // Run CheapTrick
@@ -147,6 +166,10 @@ emscripten::val D4C_JS(emscripten::val x_val, emscripten::val f0_val, emscripten
     int x_length, f0_length;
     // translate array to C++ ptr
     auto x = GetPtrFrom1XArray<double>(std::move(x_val), &x_length);
+    if(x_length == 0){
+        emscripten_log(EM_LOG_ERROR, E01);
+        EM_TERM();
+    }
     auto f0 = GetPtrFrom1XArray<double>(std::move(f0_val), &f0_length);
     auto time_axis = GetPtrFrom1XArray<double>(std::move(time_axis_val));
     // run D4C
@@ -206,6 +229,12 @@ emscripten::val W2World(const std::string &fileName) {
     int fs, nbit;
     // GetAudioLength for read
     int x_length = GetAudioLength(f);
+
+    if(x_length == 0){
+        emscripten_log(EM_LOG_ERROR, E01);
+        EM_TERM();
+    }
+
     auto x = new double[x_length];
     // Use tools/audioio.cpp wavread function
     wavread(f, &fs, &nbit, x);
