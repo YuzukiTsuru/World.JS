@@ -200,7 +200,6 @@ emscripten::val WavWrite_JS(emscripten::val y_val, int fs, const std::string &fi
 
 EMSCRIPTEN_KEEPALIVE
 emscripten::val W2World(const std::string &fileName) {
-    // TODO
     // init return val
     // Get File Name
     const char *f = fileName.c_str();
