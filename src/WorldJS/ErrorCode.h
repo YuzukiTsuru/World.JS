@@ -11,7 +11,7 @@ void EM_TERM() {
                 this.message = message;
                 this.name = 'WorldJSException';
             }
-            throw new WorldJSException("WorldJS Runtime Error. Terminated.");
+            throw new WorldJSException("WorldJS Error is Detected. Terminated.");
     );
 }
 
