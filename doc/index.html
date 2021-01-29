@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>WorldJS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/darkly/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Code">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
+</head>
+
+<body>
+<nav class="navbar navbar-light navbar-expand-md text-right navigation-clean" style="background: rgb(34,34,34);">
+    <div class="container"><a class="navbar-brand text-center" href="#" style="font-family: 'Fira Code', monospace;color: #f2f5f8;filter: contrast(130%);margin-right: 0px;">World.JS</a>
+        <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1" style="color: #eeeeee;"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon" style="color: #f2f5f8;font-size: 15px;filter: blur(0px) brightness(200%) contrast(0%) hue-rotate(0deg);opacity: 1;"></span></button>
+        <div
+                class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="https://github.com/YuzukiTsuru/World.JS" style="color: #f2f5f8;">GitHub</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/YuzukiTsuru/World.JS/releases/latest" style="color: #f2f5f8;">Download</a></li>
+                <li class="nav-item"></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="highlight-blue" style="background: linear-gradient(43deg, #004e47 36%, #8b8b00), rgb(0,123,150);">
+    <div class="container">
+        <div class="d-xl-flex justify-content-xl-center" style="text-align: center;"><img class="rounded d-xl-flex justify-content-xl-center" src="https://raw.githubusercontent.com/YuzukiTsuru/World.JS/master/.github/ScreenShots/logo.v3.png" style="text-align: center;"></div>
+        <div class="intro"></div>
+    </div>
+    <p class="text-monospace text-uppercase text-center" style="border-color: #f2f5f8;color: rgb(255,255,255);font-size: 28px;font-family: 'Fira Code', monospace;">A JavaScript Wrapper for World Vocoder Powered by Emscripten<br></p>
+</div>
+<div></div>
+<div style="margin-top: 40px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p>Start WavRead</p>
+                <p id="WavRead"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/WorldJSd.js"></script>
+
+<script>
+    setTimeout(function () {
+        let k = Module.WavRead_JS("vaiueo2d.wav");
+        let s = "Wav File Data: <br>";
+        s += "Length = " + k.x_length + "<br>";
+        for (let i = 0; i < 20; i++) {
+            s += k.x[i] + "&nbsp;&nbsp;"
+            if (i % 2) {
+                s += "<br>";
+            }
+        }
+        s += "<br>...";
+        $('#WavRead').html(s);
+    }, 2000)
+</script>
+</body>
+
+</html>
