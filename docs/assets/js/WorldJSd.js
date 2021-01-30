@@ -165,7 +165,7 @@ Module.expectedDataFileDownloads++;
    "audio": 1
   } ],
   "remote_package_size": 35044,
-  "package_uuid": "86926ffb-e0df-42d5-8bf1-930f03b8b967"
+  "package_uuid": "d6325531-24af-4339-892e-ab03602568ca"
  });
 })();
 
@@ -7384,6 +7384,8 @@ var ___wasm_call_ctors = Module["___wasm_call_ctors"] = createExportWrapper("__w
 
 var __Z18DisplayInformationiii = Module["__Z18DisplayInformationiii"] = createExportWrapper("_Z18DisplayInformationiii");
 
+var __Z14GetInformationiii = Module["__Z14GetInformationiii"] = createExportWrapper("_Z14GetInformationiii");
+
 var __Z10WavRead_JSRKNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEE = Module["__Z10WavRead_JSRKNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEE"] = createExportWrapper("_Z10WavRead_JSRKNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEE");
 
 var __Z6Dio_JSN10emscripten3valEid = Module["__Z6Dio_JSN10emscripten3valEid"] = createExportWrapper("_Z6Dio_JSN10emscripten3valEid");
@@ -7402,6 +7404,8 @@ var __Z7W2WorldRKNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEE 
 
 var _strlen = Module["_strlen"] = createExportWrapper("strlen");
 
+var _malloc = Module["_malloc"] = createExportWrapper("malloc");
+
 var ___getTypeName = Module["___getTypeName"] = createExportWrapper("__getTypeName");
 
 var ___embind_register_native_and_builtin_types = Module["___embind_register_native_and_builtin_types"] = createExportWrapper("__embind_register_native_and_builtin_types");
@@ -7411,8 +7415,6 @@ var ___errno_location = Module["___errno_location"] = createExportWrapper("__err
 var _fflush = Module["_fflush"] = createExportWrapper("fflush");
 
 var _free = Module["_free"] = createExportWrapper("free");
-
-var _malloc = Module["_malloc"] = createExportWrapper("malloc");
 
 var stackSave = Module["stackSave"] = createExportWrapper("stackSave");
 
