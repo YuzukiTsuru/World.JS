@@ -23,6 +23,21 @@ void DisplayInformation(int fs, int nbit, int x_length) {
     std::cout << "Length " << static_cast<double>(x_length) / fs << " [sec]" << std::endl;
 }
 
+EMSCRIPTEN_KEEPALIVE
+emscripten::val GetInformation(int fs, int nbit, int x_length) {
+    std::string info = "File information<br>Sampling : "
+                       + std::to_string(fs)
+                       + " Hz "
+                       + std::to_string(nbit)
+                       + " Bit"
+                       + "<br>Length "
+                       + std::to_string(x_length)
+                       + "[sample]"
+                       + "<br>Length " + std::to_string(static_cast<double>(x_length) / fs)
+                       + " [sec]";
+    return emscripten::val(info);
+}
+
 // WavFile Read
 EMSCRIPTEN_KEEPALIVE
 emscripten::val WavRead_JS(const std::string &filename) {
@@ -33,7 +48,7 @@ emscripten::val WavRead_JS(const std::string &filename) {
     int fs, nbit;
     // GetAudioLength for read
     int x_length = GetAudioLength(f);
-    if (x_length == 0){
+    if (x_length == 0) {
         emscripten_log(EM_LOG_ERROR, E00);
         EM_TERM();
     }
@@ -56,7 +71,7 @@ emscripten::val Dio_JS(emscripten::val x_val, int fs, double frame_period) {
     int x_length;
     // translate array to C++ ptr
     auto x = GetPtrFrom1XArray<double>(std::move(x_val), &x_length);
-    if(x_length == 0){
+    if (x_length == 0) {
         emscripten_log(EM_LOG_ERROR, E01);
         EM_TERM();
     }
@@ -99,7 +114,7 @@ emscripten::val Harvest_JS(emscripten::val x_val, int fs, double frame_period) {
     int x_length;
     // translate array to C++ ptr
     auto x = GetPtrFrom1XArray<double>(std::move(x_val), &x_length);
-    if(x_length == 0){
+    if (x_length == 0) {
         emscripten_log(EM_LOG_ERROR, E01);
         EM_TERM();
     }
@@ -132,7 +147,7 @@ emscripten::val CheapTrick_JS(emscripten::val x_val, emscripten::val f0_val, ems
     int x_length, f0_length;
     // translate array to C++ ptr
     auto x = GetPtrFrom1XArray<double>(std::move(x_val), &x_length);
-    if(x_length == 0){
+    if (x_length == 0) {
         emscripten_log(EM_LOG_ERROR, E01);
         EM_TERM();
     }
@@ -166,7 +181,7 @@ emscripten::val D4C_JS(emscripten::val x_val, emscripten::val f0_val, emscripten
     int x_length, f0_length;
     // translate array to C++ ptr
     auto x = GetPtrFrom1XArray<double>(std::move(x_val), &x_length);
-    if(x_length == 0){
+    if (x_length == 0) {
         emscripten_log(EM_LOG_ERROR, E01);
         EM_TERM();
     }
@@ -230,7 +245,7 @@ emscripten::val W2World(const std::string &fileName) {
     // GetAudioLength for read
     int x_length = GetAudioLength(f);
 
-    if(x_length == 0){
+    if (x_length == 0) {
         emscripten_log(EM_LOG_ERROR, E01);
         EM_TERM();
     }
@@ -260,6 +275,7 @@ emscripten::val W2World(const std::string &fileName) {
 //-----------------------------------------------------------------------------
 EMSCRIPTEN_BINDINGS(WorldJS) {
     emscripten::function("DisplayInformation", &DisplayInformation);
+    emscripten::function("GetInformation", &GetInformation);
     emscripten::function("WavRead_JS", &WavRead_JS);
     emscripten::function("Dio_JS", &Dio_JS);
     emscripten::function("Harvest_JS", &Harvest_JS);

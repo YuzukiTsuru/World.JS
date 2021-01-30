@@ -51,15 +51,8 @@
 <script>
     setTimeout(function () {
         let k = Module.WavRead_JS("vaiueo2d.wav");
-        let s = "Wav File Data: <br>";
-        s += "Length = " + k.x_length + "<br>";
-        for (let i = 0; i < 20; i++) {
-            s += k.x[i] + "&nbsp;&nbsp;"
-            if (i % 2) {
-                s += "<br>";
-            }
-        }
-        s += "<br>...";
+        let s = "Display Audio Information:";
+        s += Module.GetInformation(k.fs, k.nbit, k.x_length);
         $('#WavRead').html(s);
     }, 2000)
 </script>
