@@ -28,8 +28,6 @@ World Native:
 - [x] DIO_JS                 # F0 estimation based on DIO (Distributed Inline-filter Operation).
 - [x] Harvest_JS             # F0 estimation based on Harvest.
 - [x] DisplayInformation     # Display Information.
-- [x] DisplayInformationVal  # Display Information by Audio object from WavRead_JS()
-- [X] GetInformation         # Output information in HTML.
 - [x] CheapTrick_JS          # Spectral envelope estimation on the basis of the idea of CheapTrick.
 - [x] D4C_JS                 # Band-aperiodicity estimation on the basis of the idea of D4C.
 - [X] Synthesis_JS           # Voice synthesis based on f0, spectrogram and aperiodicity.
@@ -37,6 +35,8 @@ World Native:
 
 Wrapper:
 - [x] Wav2World              # Wav to world.
+- [x] DisplayInformationVal  # Display Information by Audio object from WavRead_JS()
+- [X] GetInformation         # Output information in HTML.
 - [ ] WavInJS                # Load wav file as WavRead do in JavaScript.
 ```
 
