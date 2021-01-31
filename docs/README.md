@@ -1,4 +1,4 @@
-<p align="center"><img width="300" src="https://raw.githubusercontent.com/YuzukiTsuru/World.JS/master/assets/img/logo.v3.png" alt="World.JS logo"></p>
+<p align="center"><img width="300" src="https://raw.githubusercontent.com/YuzukiTsuru/World.JS/master/.github/ScreenShots/logo.v3.png" alt="World.JS logo"></p>
 <h1 align="center">World.JS</h1>
 <p align="center">A JavaScript Wrapper for World Vocoder Powered by Emscripten</p>
 <p align="center"><img src="https://github.com/YuzukiTsuru/World.JS/workflows/CMake/badge.svg">    <img src="https://ci.appveyor.com/api/projects/status/6vbge2p0q0mdshtc?svg=true"></p>
