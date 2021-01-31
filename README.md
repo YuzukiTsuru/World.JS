@@ -10,26 +10,13 @@ World.JS is A JavaScript Wrapper for World Vocoder Powered by Emscripten.
 
 You can use World Vocoder in your Browser,Node or Electron app and many more.
 
-####  About Emscripten
-Emscripten is a toolchain for compiling to asm.js and WebAssembly, built using LLVM, that lets you run C and C++ on the web at near-native speed without plugins.
-- Fast as near-native speed.
-- Easy to use.
-- Powerful
-
-#### About World
-
-Morise's World Vocoder is a fast and high-quality vocoder. World Vocoder parameterizes speech into three components:
-
-1. Pitch (fundamental frequency, F0) contour
-2. Harmonic spectral envelope
-3. Aperiodic spectral envelope (relative to the harmonic spectral envelope)
-
-For more information, please visit [Morise's World repository](https://github.com/mmorise/World) and the [official website of World Vocoder](http://www.kisc.meiji.ac.jp/~mmorise/world/english/)
-
 ### Build Status CI
 | appveyor master | appveyor latest | GitHub Action latest |
 |---|---|---|
 |[![Build status](https://ci.appveyor.com/api/projects/status/6vbge2p0q0mdshtc/branch/master?svg=true)](https://ci.appveyor.com/project/GloomyGhost-MosquitoCoil/world-js/branch/master)|[![Build status](https://ci.appveyor.com/api/projects/status/6vbge2p0q0mdshtc?svg=true)](https://ci.appveyor.com/project/GloomyGhost-MosquitoCoil/world-js)|![CMake](https://github.com/YuzukiTsuru/World.JS/workflows/CMake/badge.svg)|
+
+## Document
+Read more info in: [document](http://YuzukiTsuru.github.io/World.JS)
 
 ### API
 ```
@@ -50,8 +37,6 @@ Wrapper:
 - [ ] WavInJS                # Load wav file as WavRead do in JavaScript.
 ```
 
-## Document
-Read more info in: [document](http://YuzukiTsuru.github.io/World.JS)
 
 ## References
 
@@ -79,3 +64,26 @@ Read more info in: [document](http://YuzukiTsuru.github.io/World.JS)
 
 [8] M. Morise and Y. Watanabe: Sound quality comparison among high-quality vocoders by using re-synthesized speech, Acoust. Sci. & Tech., vol. 39, no. 3, pp. 263-265, May 2018. https://www.jstage.jst.go.jp/article/ast/39/3/39_E1779/_article/-char/en
 
+## License
+
+MIT License
+
+Copyright (c) 2019 Gloomy Ghost
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
