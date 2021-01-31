@@ -40,7 +40,6 @@ Wrapper:
 - [ ] WavInJS                # Load wav file as WavRead do in JavaScript.
 ```
 
-
 ## References
 - [World](https://github.com/mmorise/World)
 - [emscripten](https://emscripten.org/)
