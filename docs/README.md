@@ -1,4 +1,4 @@
-<p align="center"><img width="300" src=".github/ScreenShots/logo.v3.png" alt="World.JS logo"></p>
+<p align="center"><img width="300" src="https://raw.githubusercontent.com/YuzukiTsuru/World.JS/master/assets/img/logo.v3.png" alt="World.JS logo"></p>
 <h1 align="center">World.JS</h1>
 <p align="center">A JavaScript Wrapper for World Vocoder Powered by Emscripten</p>
 <p align="center"><img src="https://github.com/YuzukiTsuru/World.JS/workflows/CMake/badge.svg">    <img src="https://ci.appveyor.com/api/projects/status/6vbge2p0q0mdshtc?svg=true"></p>
@@ -68,7 +68,7 @@ Wrapper:
 </script>
 ```
 
-![](.github/ScreenShots/WavRead.png)
+![](assets/img/WavRead.png)
 
 ##### DIO_JS
 
@@ -84,7 +84,7 @@ Wrapper:
     console.log(f0);
 </script>
 ```
-![Dio](.github/ScreenShots/Dio.png)
+![Dio](assets/img/Dio.png)
 
 ##### Harvest_JS
 
@@ -101,7 +101,7 @@ Wrapper:
 </script>
 ```
 
-![Harvest](.github/ScreenShots/Harvest.png)
+![Harvest](assets/img/Harvest.png)
 
 ##### DisplayInformation
 
@@ -130,7 +130,7 @@ Wrapper:
 </script>
 ```
 
-![CheapTrick](.github/ScreenShots/CheapTrick.png)
+![CheapTrick](assets/img/CheapTrick.png)
 
 ##### D4C_JS
 
@@ -147,7 +147,7 @@ Wrapper:
 </script>
 ```
 
-![D4C](.github/ScreenShots/D4C.png)
+![D4C](assets/img/D4C.png)
 
 ##### Synthesis_JS
 
@@ -176,7 +176,7 @@ Wrapper:
     Module.WavWrite_JS(x.x, x.fs, x.nbit, "out.wav")
 </script>
 ```
-![WavWrite](.github/ScreenShots/WavWrite.png)
+![WavWrite](assets/img/WavWrite.png)
 
 ##### Wav2World
 
@@ -188,7 +188,7 @@ Wrapper:
     Module.Wav2World("vaiueo2d.wav");
 </script>
 ```
-![WavWrite](.github/ScreenShots/W2W.png)
+![WavWrite](assets/img/W2W.png)
 
 
 ### Build World.JS
