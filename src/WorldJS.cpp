@@ -24,6 +24,14 @@ void DisplayInformation(int fs, int nbit, int x_length) {
 }
 
 EMSCRIPTEN_KEEPALIVE
+void DisplayInformationVal(emscripten::val x) {
+    std::cout << "File information" << std::endl;
+    std::cout << "Sampling : " << x["fs"].as<int>() << " Hz " << x["nbit"].as<int>() << " Bit" << std::endl;
+    std::cout << "Length " << x["x_length"].as<int>() << "[sample]" << std::endl;
+    std::cout << "Length " << static_cast<double>(x["x_length"].as<int>()) / x["fs"].as<int>() << " [sec]" << std::endl;
+}
+
+EMSCRIPTEN_KEEPALIVE
 emscripten::val GetInformation(int fs, int nbit, int x_length) {
     std::string info = "File information<br>Sampling : "
                        + std::to_string(fs)
@@ -38,6 +46,20 @@ emscripten::val GetInformation(int fs, int nbit, int x_length) {
     return emscripten::val(info);
 }
 
+EMSCRIPTEN_KEEPALIVE
+emscripten::val GetInformationVal(const emscripten::val &x) {
+    std::string info = "File information<br>Sampling : "
+                       + std::to_string(x["fs"].as<int>())
+                       + " Hz "
+                       + std::to_string(x["nbit"].as<int>())
+                       + " Bit"
+                       + "<br>Length "
+                       + std::to_string(x["x_length"].as<int>())
+                       + "[sample]"
+                       + "<br>Length " + std::to_string(static_cast<double>(x["x_length"].as<int>()) / x["fs"].as<int>())
+                       + " [sec]";
+    return emscripten::val(info);
+}
 // WavFile Read
 EMSCRIPTEN_KEEPALIVE
 emscripten::val WavRead_JS(const std::string &filename) {
@@ -275,7 +297,9 @@ emscripten::val W2World(const std::string &fileName) {
 //-----------------------------------------------------------------------------
 EMSCRIPTEN_BINDINGS(WorldJS) {
     emscripten::function("DisplayInformation", &DisplayInformation);
+    emscripten::function("DisplayInformationVal", &DisplayInformationVal);
     emscripten::function("GetInformation", &GetInformation);
+    emscripten::function("GetInformationVal", &GetInformationVal);
     emscripten::function("WavRead_JS", &WavRead_JS);
     emscripten::function("Dio_JS", &Dio_JS);
     emscripten::function("Harvest_JS", &Harvest_JS);
