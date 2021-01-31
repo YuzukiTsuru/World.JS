@@ -4,19 +4,18 @@
 <p align="center"><img src="https://github.com/YuzukiTsuru/World.JS/workflows/CMake/badge.svg">    <img src="https://ci.appveyor.com/api/projects/status/6vbge2p0q0mdshtc?svg=true"></p>
 
 
-### About World.JS
+## About World.JS
 
-World.JS is A JavaScript Wrapper for World Vocoder Powered by Emscripten.
+World.JS is A JavaScript Wrapper for World Vocoder Powered by Emscripten.  
+You can use World Vocoder in your Browser, Node, Electron app and many more like normal JavaScript.
 
-You can use World Vocoder in your Browser,Node or Electron app and many more.
-
-####  About Emscripten
+##  About Emscripten
 Emscripten is a toolchain for compiling to asm.js and WebAssembly, built using LLVM, that lets you run C and C++ on the web at near-native speed without plugins.
 - Fast as near-native speed.
 - Easy to use.
 - Powerful
 
-#### About World
+## About World
 
 Morise's World Vocoder is a fast and high-quality vocoder. World Vocoder parameterizes speech into three components:
 
@@ -26,12 +25,12 @@ Morise's World Vocoder is a fast and high-quality vocoder. World Vocoder paramet
 
 For more information, please visit [Morise's World repository](https://github.com/mmorise/World) and the [official website of World Vocoder](http://www.kisc.meiji.ac.jp/~mmorise/world/english/)
 
-### Build Status CI
+## Build Status CI
 | appveyor master | appveyor latest | GitHub Action latest |
 |---|---|---|
 |[![Build status](https://ci.appveyor.com/api/projects/status/6vbge2p0q0mdshtc/branch/master?svg=true)](https://ci.appveyor.com/project/GloomyGhost-MosquitoCoil/world-js/branch/master)|[![Build status](https://ci.appveyor.com/api/projects/status/6vbge2p0q0mdshtc?svg=true)](https://ci.appveyor.com/project/GloomyGhost-MosquitoCoil/world-js)|![CMake](https://github.com/YuzukiTsuru/World.JS/workflows/CMake/badge.svg)|
 
-### API
+## API
 ```
 World Native:
 - [x] WavRead_JS             # .wav input functions.
@@ -49,6 +48,10 @@ Wrapper:
 - [x] Wav2World              # Wav to world.
 - [ ] WavInJS                # Load wav file as WavRead do in JavaScript.
 ```
+
+## How To Use
+
+
 ### Example
 
 ##### WavRead_JS
