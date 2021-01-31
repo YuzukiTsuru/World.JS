@@ -51,9 +51,6 @@ Wrapper:
 ```
 ### Example
 
-<details>
-<summary>Expand View full example</summary>
-    
 ##### WavRead_JS
 
 > .wav input functions
@@ -193,7 +190,6 @@ Wrapper:
 ```
 ![WavWrite](.github/ScreenShots/W2W.png)
 
-</details>
 
 ### Build World.JS
 
