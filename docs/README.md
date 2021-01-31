@@ -193,6 +193,10 @@ Wrapper:
 
 ### Build World.JS
 
+#### Here is a sort clip to show how to build the World.JS in Linux
+
+<script id="asciicast-388188" src="https://asciinema.org/a/388188.js" async></script>
+
 ##### Before Build
 
 You must install these software in advance:
