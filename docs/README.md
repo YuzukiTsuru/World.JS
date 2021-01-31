@@ -197,7 +197,7 @@ Wrapper:
 
 Here is a sort clip to show how to build the World.JS in Linux (Powered by asciicast)
 
-[![asciicast](https://asciinema.org/a/388188.svg)](https://asciinema.org/a/388188)
+<script id="asciicast-388188" src="https://asciinema.org/a/388188.js" async></script>
 
 ##### Before Build
 
