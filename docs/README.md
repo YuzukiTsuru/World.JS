@@ -195,7 +195,7 @@ Wrapper:
 
 #### Terminal Clip Guide
 
-Here is a sort clip to show how to build the World.JS in Linux (Powered by asciicast)
+Here is a sort clip to show how to build the World.JS in Linux (Powered by asciinema)
 
 <script id="asciicast-388188" src="https://asciinema.org/a/388188.js" async></script>
 
