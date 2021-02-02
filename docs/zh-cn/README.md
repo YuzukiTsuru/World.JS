@@ -6,8 +6,7 @@
 
 ## 关于 World.JS
 
-World.JS 是由 Emscripten 所编译的 World Vocoder 的 JavaScript 版本。
-您可以在浏览器，NodeJS，Electron 应用程序中使用，并且可以像普通 JavaScript 一样使用。
+World.JS 是 World Vocoder 的 JavaScript 版本，其通过 Emscripten 构建。您可以在浏览器、NodeJS、Electron 应用程序等任何可以使用普通 JavaScript 代码的地方使用它。
 
 ## 关于 Emscripten
 Emscripten 是 Mozilla 的开发人员 Alon Zakai 所开发的一个独特 LLVM 后端，可以将 LLVM 中间码编译成 JavaScript ，大大简化了现有代码在 Web 时代的重用。
