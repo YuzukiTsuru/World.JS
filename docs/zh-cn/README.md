@@ -179,11 +179,9 @@ World.JS 提供的接口:
 
 <script id="asciicast-388188" src="https://asciinema.org/a/388188.js" async></script>
 
-!> 以下内容尚未翻译
+##### 编译前的准备
 
-##### Before Build
-
-You must install these software in advance:
+建议在编译前准备好这些工具环境配置
 
 - [CMake](https://cmake.org/)
 - [Python3 environment](https://www.python.org/)
@@ -191,9 +189,9 @@ You must install these software in advance:
 - [Node](https://nodejs.org/)
 - [VSCode](https://code.visualstudio.com/)
   - [VSCode extension: CMake Tools](https://marketplace.visualstudio.com/items?itemName=vector-of-bool.cmake-tools)
-- Software development tool chain like `make` `gcc` etc.
+- 基本的编译工具，例如 `make` `gcc` 等工具
 
-##### Clone Files
+##### 拉取代码
 
 ```bash
 git clone https://github.com/YuzukiTsuru/World.JS.git
@@ -201,42 +199,42 @@ git submodule init
 git submodule update
 ```
 
-##### Set emsdk CMake Tool and Configure the compilation environment
+##### 设置编译工具链
 
 ###### VSCode
-Edit it in `.vscode/settings.json` and change the path into your own.
+在 `.vscode/settings.json` 中编辑配置，设置工具链文件路径
 
 ```yaml
 "cmake.configureArgs": ["-DCMAKE_TOOLCHAIN_FILE=path/to/Emscripten.cmake"]
 ```
-###### Common CMake
+###### CMake
 
-Use the `CMAKE_TOOLCHAIN_FILE` parameter during `cmake` command.
+预编译时使用 `CMAKE_TOOLCHAIN_FILE` 参数定义工具链
 
-example:
+例如：
 ```bash
 mkdir build && cd build
 cmake -DCMAKE_TOOLCHAIN_FILE=the/path/to/Emscripten.cmake ..
 ```
 
-##### Run build script
+##### 运行编译命令
 
-Before run it, make sure `vaiueo2d.wav` is existence in the build folder.  **OR** change the `CMakeLists.txt` and delete the `preload-file`, this file is only for test.
+!> World.JS 的 Debug 版本在构建的时候会将测试音频文件 `vaiue.wav` 
 
-###### For VSCode
+###### VSCode
 
-After setting `cmake.configureArgs` in your VSCode settings file :`.vscode/settings.json`, click the compile button.
+点击编译按钮
 
-###### For CMake
+###### CMake
 
-After Configure the compilation environment, just `make`
+使用 `make` 命令进行编译
 
 ```bash
 cd build
 make
 ```
 
-### Troubleshooting
+### 常见问题
 
 ##### Uncaught could not load memory initializer
 
@@ -244,16 +242,20 @@ make
 Access to XMLHttpRequest at 'file:///World.JS/test/WorldJS.data' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes: http, data, chrome, chrome-extension, https.
 WorldJS.js:15 Uncaught could not load memory initializer WorldJS.js.mem
 ```
+不幸的是，某些浏览器（包括*Chrome*，*Safari*和*Internet Explorer*）目前并不支持`file://` 作为 XHRrequests，导致无法加载 HTML 所需的额外文件（例如 `.mem` 文件， 或打包文件 `.data`。 对于这些浏览器，您需要使用网络服务器来提供文件。 最简单的方法是使用 Python  提供的 HTTPServer（在当前目录中执行python -m SimpleHTTPServer（Python2）python -m http.server（python3），然后打开http://localhost:8000`）。  emscripten还提供了“ emrun”来运行此类代码。 文档如下：
+[Running HTML files with emrun](https://emscripten.org/docs/compiling/Running-html-files-with-emrun.html)
 
-Unfortunately several browsers (including *Chrome*, *Safari*, and *Internet Explorer*) do not support `file://` XHRrequests, and can’t load extra files needed by the HTML (like a `.mem` file, or packaged file `data` as mentioned lower down). For these browsers you’ll need to serve the files using a webserver. The easiest way to do this is to use the python **HTTPServer** (in the current directory do `python -m SimpleHTTPServer` (Python2)  ` python -m http.server` (python3) and then open `http://localhost:8000`). And emscripten also provide `emrun` to run such code. Document here [Running HTML files with emrun](https://emscripten.org/docs/compiling/Running-html-files-with-emrun.html)
+### 文件系统开发
 
-### File System Develop
+目前 World.JS 的文件系统是基于 emscripten 的，将来会加入自己的文件系统。目前请使用 emscripten 的文件系统提供文件。
 
-The File System is based on Emscripten,visit Emscripten home for more detials:
+!> 不可直接进行诸如 `Module.WavRead_JS("/home/my/vaiueo2d.wav");` 这样的文件导入，目前还未解决文件系统的导入问题。
+
+相关文档：
 
 [https://emscripten.org/docs/porting/files/index.html](https://emscripten.org/docs/porting/files/index.html)
 
-## References
+## 参考资料
 
 [1] M. Morise, F. Yokomori, and K. Ozawa: WORLD: a vocoder-based high-quality speech synthesis system for real-time applications, IEICE transactions on information and systems, vol. E99-D, no. 7, pp. 1877-1884, 2016.
 [2] M. Morise: D4C, a band-aperiodicity estimator for high-quality speech synthesis, Speech Communication, vol. 84, pp. 57-65, Nov. 2016. http://www.sciencedirect.com/science/article/pii/S0167639316300413
@@ -278,4 +280,3 @@ The File System is based on Emscripten,visit Emscripten home for more detials:
 `此论文证明当前版本的 WORLD 在重新合成语音的音质方面优于同类声码器。本文还包括最新版本中使用的 D4C 与 LoveTrain 中的详细信息。`
 
 [8] M. Morise and Y. Watanabe: Sound quality comparison among high-quality vocoders by using re-synthesized speech, Acoust. Sci. & Tech., vol. 39, no. 3, pp. 263-265, May 2018. https://www.jstage.jst.go.jp/article/ast/39/3/39_E1779/_article/-char/en
-
