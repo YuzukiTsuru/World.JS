@@ -6,7 +6,7 @@
 
 ## About World.JS
 
-World.JS is A JavaScript Wrapper for World Vocoder Powered by Emscripten.  
+World.JS is A JavaScript Wrapper for World Vocoder Powered by emscripten.  
 You can use World Vocoder in your Browser, Node, Electron app and many more like normal JavaScript.
 
 ##  About Emscripten
@@ -223,6 +223,8 @@ git submodule update
 
 ##### Set emsdk CMake Tool and Configure the compilation environment
 
+!> The Debug version of World.JS will preload the test audio file `vaiueo2d.wav` into World.JS as a `*.data` file for development and testing.  This is because the file system of World.JS is currently incomplete.
+
 ###### VSCode
 Edit it in `.vscode/settings.json` and change the path into your own.
 
@@ -240,8 +242,6 @@ cmake -DCMAKE_TOOLCHAIN_FILE=the/path/to/Emscripten.cmake ..
 ```
 
 ##### Run build script
-
-Before run it, make sure `vaiueo2d.wav` is existence in the build folder.  **OR** change the `CMakeLists.txt` and delete the `preload-file`, this file is only for test.
 
 ###### For VSCode
 
@@ -265,9 +265,10 @@ Access to XMLHttpRequest at 'file:///World.JS/test/WorldJS.data' from origin 'nu
 WorldJS.js:15 Uncaught could not load memory initializer WorldJS.js.mem
 ```
 
-Unfortunately several browsers (including *Chrome*, *Safari*, and *Internet Explorer*) do not support `file://` XHRrequests, and can’t load extra files needed by the HTML (like a `.mem` file, or packaged file `data` as mentioned lower down). For these browsers you’ll need to serve the files using a webserver. The easiest way to do this is to use the python **HTTPServer** (in the current directory do `python -m SimpleHTTPServer` (Python2)  ` python -m http.server` (python3) and then open `http://localhost:8000`). And emscripten also provide `emrun` to run such code. Document here [Running HTML files with emrun](https://emscripten.org/docs/compiling/Running-html-files-with-emrun.html)
+Unfortunately several browsers (including *Chrome*, *Safari*, and *Internet Explorer*) do not support `file://` XHRrequests, and can’t load extra files needed by the HTML (like a `.mem` file, or packaged file `data` as mentioned lower down). For these browsers you’ll need to serve the files using a webserver. The easiest way to do this is to use the Python **HTTPServer** (in the current directory do `python -m SimpleHTTPServer` (Python2)  ` python -m http.server` (python3) and then open `http://localhost:8000`). And emscripten also provide `emrun` to run such code. Document here [Running HTML files with emrun](https://emscripten.org/docs/compiling/Running-html-files-with-emrun.html)
 
-### File System Develop
+### File System Develop 
+
 
 The File System is based on Emscripten,visit Emscripten home for more detials:
 
@@ -298,4 +299,3 @@ The File System is based on Emscripten,visit Emscripten home for more detials:
 `A paper was published to demonstrate that the current version of WORLD was superior to the similar vocoders in the sound quality of re-synthesized speech. This paper also includes the detailed information in the D4C LoveTrain used in the latest version.`
 
 [8] M. Morise and Y. Watanabe: Sound quality comparison among high-quality vocoders by using re-synthesized speech, Acoust. Sci. & Tech., vol. 39, no. 3, pp. 263-265, May 2018. https://www.jstage.jst.go.jp/article/ast/39/3/39_E1779/_article/-char/en
-
