@@ -258,7 +258,7 @@ make
 
 ### Troubleshooting
 
-##### Uncaught could not load memory initializer
+#### Uncaught could not load memory initializer
 
 ```
 Access to XMLHttpRequest at 'file:///World.JS/test/WorldJS.data' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes: http, data, chrome, chrome-extension, https.
