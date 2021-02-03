@@ -219,7 +219,7 @@ cmake -DCMAKE_TOOLCHAIN_FILE=the/path/to/Emscripten.cmake ..
 
 ##### 运行编译命令
 
-!> World.JS 的 Debug 版本在构建的时候会将测试音频文件 `vaiue.wav` 
+!> World.JS 的 Debug 版本在构建的时候会将测试音频文件 `vaiueo2d.wav` 预加载进入 World.JS 以便开发测试。这是因为 World.JS的文件系统目前尚不完备。
 
 ###### VSCode
 
@@ -236,7 +236,7 @@ make
 
 ### 常见问题
 
-##### Uncaught could not load memory initializer
+#### Uncaught could not load memory initializer
 
 ```
 Access to XMLHttpRequest at 'file:///World.JS/test/WorldJS.data' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes: http, data, chrome, chrome-extension, https.
