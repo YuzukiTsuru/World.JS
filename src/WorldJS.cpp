@@ -10,18 +10,12 @@
 #include "audioio.h"
 
 #include "WorldJS.h"
+#include "WorldNative.h"
 
 #include "ErrorCode.h"
 #include "Converter.h"
 #include "Wav2World.h"
 
-EMSCRIPTEN_KEEPALIVE
-void DisplayInformation(int fs, int nbit, int x_length) {
-    std::cout << "File information" << std::endl;
-    std::cout << "Sampling : " << fs << " Hz " << nbit << " Bit" << std::endl;
-    std::cout << "Length " << x_length << "[sample]" << std::endl;
-    std::cout << "Length " << static_cast<double>(x_length) / fs << " [sec]" << std::endl;
-}
 
 EMSCRIPTEN_KEEPALIVE
 void DisplayInformationVal(emscripten::val x) {
@@ -29,21 +23,6 @@ void DisplayInformationVal(emscripten::val x) {
     std::cout << "Sampling : " << x["fs"].as<int>() << " Hz " << x["nbit"].as<int>() << " Bit" << std::endl;
     std::cout << "Length " << x["x_length"].as<int>() << "[sample]" << std::endl;
     std::cout << "Length " << static_cast<double>(x["x_length"].as<int>()) / x["fs"].as<int>() << " [sec]" << std::endl;
-}
-
-EMSCRIPTEN_KEEPALIVE
-emscripten::val GetInformation(int fs, int nbit, int x_length) {
-    std::string info = "File information<br>Sampling : "
-                       + std::to_string(fs)
-                       + " Hz "
-                       + std::to_string(nbit)
-                       + " Bit"
-                       + "<br>Length "
-                       + std::to_string(x_length)
-                       + "[sample]"
-                       + "<br>Length " + std::to_string(static_cast<double>(x_length) / fs)
-                       + " [sec]";
-    return emscripten::val(info);
 }
 
 EMSCRIPTEN_KEEPALIVE
@@ -296,9 +275,9 @@ emscripten::val W2World(const std::string &fileName) {
 // The JavaScript API for C++
 //-----------------------------------------------------------------------------
 EMSCRIPTEN_BINDINGS(WorldJS) {
-    emscripten::function("DisplayInformation", &DisplayInformation);
+    emscripten::function("DisplayInformation", &WorldNative::DisplayInformation);
     emscripten::function("DisplayInformationVal", &DisplayInformationVal);
-    emscripten::function("GetInformation", &GetInformation);
+    emscripten::function("GetInformation", &WorldNative::GetInformation);
     emscripten::function("GetInformationVal", &GetInformationVal);
     emscripten::function("WavRead_JS", &WavRead_JS);
     emscripten::function("Dio_JS", &Dio_JS);

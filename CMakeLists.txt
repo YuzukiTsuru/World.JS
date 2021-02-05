@@ -39,7 +39,8 @@ include_directories(
         src/WorldJS/
         src/Wav2World/Module/
         src/Wav2World/
-        tools
+        tools/
+        src/
 )
 
 file(GLOB sources src/*.cpp)
