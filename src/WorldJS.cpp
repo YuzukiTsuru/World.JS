@@ -7,14 +7,8 @@
 #include <emscripten.h>
 #include <emscripten/bind.h>
 
-#include "audioio.h"
-
 #include "WorldJS.h"
-#include "WorldNative.h"
-
-#include "ErrorCode.h"
-#include "Converter.h"
-#include "Wav2World.h"
+#include "WorldNativeIO.h"
 
 
 EMSCRIPTEN_KEEPALIVE
@@ -38,31 +32,6 @@ emscripten::val GetInformationVal(const emscripten::val &x) {
                        + "<br>Length " + std::to_string(static_cast<double>(x["x_length"].as<int>()) / x["fs"].as<int>())
                        + " [sec]";
     return emscripten::val(info);
-}
-// WavFile Read
-EMSCRIPTEN_KEEPALIVE
-emscripten::val WavRead_JS(const std::string &filename) {
-    // init val
-    emscripten::val InWav = emscripten::val::object();
-    // Get File Name
-    const char *f = filename.c_str();
-    int fs, nbit;
-    // GetAudioLength for read
-    int x_length = GetAudioLength(f);
-    if (x_length == 0) {
-        emscripten_log(EM_LOG_ERROR, E00);
-        EM_TERM();
-    }
-    auto x = new double[x_length];
-    // Use tools/audioio.cpp wavread function
-    wavread(f, &fs, &nbit, x);
-    // Set the output value
-    InWav.set("x", Get1XArray<double>(x, x_length));
-    InWav.set("fs", fs);
-    InWav.set("nbit", nbit);
-    InWav.set("x_length", x_length);
-    delete[] x;
-    return InWav;
 }
 
 EMSCRIPTEN_KEEPALIVE
@@ -228,14 +197,6 @@ emscripten::val Synthesis_JS(emscripten::val f0_val, const emscripten::val &spec
     return ret;
 }
 
-EMSCRIPTEN_KEEPALIVE
-emscripten::val WavWrite_JS(emscripten::val y_val, int fs, const std::string &filename) {
-    // init
-    int y_length;
-    auto y = GetPtrFrom1XArray<double>(std::move(y_val), &y_length);
-    wavwrite(y, y_length, fs, 16, filename.c_str());
-    return emscripten::val(y_length);
-}
 
 EMSCRIPTEN_KEEPALIVE
 emscripten::val W2World(const std::string &fileName) {
@@ -275,16 +236,16 @@ emscripten::val W2World(const std::string &fileName) {
 // The JavaScript API for C++
 //-----------------------------------------------------------------------------
 EMSCRIPTEN_BINDINGS(WorldJS) {
-    emscripten::function("DisplayInformation", &WorldNative::DisplayInformation);
+    emscripten::function("DisplayInformation", &WorldNativeIO::DisplayInformation);
     emscripten::function("DisplayInformationVal", &DisplayInformationVal);
-    emscripten::function("GetInformation", &WorldNative::GetInformation);
+    emscripten::function("GetInformation", &WorldNativeIO::GetInformation);
     emscripten::function("GetInformationVal", &GetInformationVal);
-    emscripten::function("WavRead_JS", &WavRead_JS);
+    emscripten::function("WavRead_JS", &WorldNativeIO::WavRead_JS);
     emscripten::function("Dio_JS", &Dio_JS);
     emscripten::function("Harvest_JS", &Harvest_JS);
     emscripten::function("CheapTrick_JS", &CheapTrick_JS);
     emscripten::function("D4C_JS", &D4C_JS);
     emscripten::function("Synthesis_JS", &Synthesis_JS);
-    emscripten::function("WavWrite_JS", &WavWrite_JS);
+    emscripten::function("WavWrite_JS", &WorldNativeIO::WavWrite_JS);
     emscripten::function("Wav2World", &W2World);
 }
