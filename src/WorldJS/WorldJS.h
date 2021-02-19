@@ -31,6 +31,7 @@
 // emscripten functions.
 //-----------------------------------------------------------------------------
 #include <emscripten.h>
+#include <emscripten/val.h>
 #include <emscripten/bind.h>
 
 class WorldJS {
@@ -48,6 +49,14 @@ public:
     static EMSCRIPTEN_KEEPALIVE emscripten::val D4C(emscripten::val x_val, emscripten::val f0_val, emscripten::val time_axis_val, int fft_size, int fs);
 
     static EMSCRIPTEN_KEEPALIVE emscripten::val Synthesis(emscripten::val f0_val, const emscripten::val &spectral_val, const emscripten::val &aperiodicity_val, int fft_size, int fs, const emscripten::val &frame_period);
+
+    static EMSCRIPTEN_KEEPALIVE void DisplayInformation(int fs, int nbit, int x_length);
+
+    static EMSCRIPTEN_KEEPALIVE emscripten::val GetInformation(int fs, int nbit, int x_length);
+
+    static EMSCRIPTEN_KEEPALIVE emscripten::val WavRead(const std::string &filename);
+
+    static EMSCRIPTEN_KEEPALIVE emscripten::val WavWrite(emscripten::val y_val, int fs, const std::string &filename);
 };
 
 #endif //WORLDJS_WORLDJS_H
