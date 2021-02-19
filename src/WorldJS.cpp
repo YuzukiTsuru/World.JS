@@ -63,17 +63,17 @@ EMSCRIPTEN_KEEPALIVE emscripten::val WorldJS::Wav2World(const std::string &fileN
 EMSCRIPTEN_BINDINGS(WorldJS) {
     emscripten::class_<WorldJS>("WorldJS")
             .constructor<>()
-            .function("DisplayInformation", &WorldJS::DisplayInformation)
-            .function("WavRead", &WorldJS::WavRead)
-            .function("GetInformation", &WorldJS::GetInformation)
-            .function("WavWrite", &WorldJS::WavWrite)
-            .function("Dio", &WorldJS::Dio)
-            .function("Harvest", &WorldJS::Harvest)
-            .function("CheapTrick", &WorldJS::CheapTrick)
-            .function("D4C", &WorldJS::D4C)
-            .function("Synthesis", &WorldJS::Synthesis)
-            .function("DisplayInformationVal", &WorldJS::DisplayInformationVal)
-            .function("GetInformationVal", &WorldJS::GetInformationVal)
-            .function("Wav2World", &WorldJS::Wav2World);
+            .class_function("DisplayInformation", &WorldJS::DisplayInformation)
+            .class_function("WavRead", &WorldJS::WavRead)
+            .class_function("GetInformation", &WorldJS::GetInformation)
+            .class_function("WavWrite", &WorldJS::WavWrite)
+            .class_function("Dio", &WorldJS::Dio)
+            .class_function("Harvest", &WorldJS::Harvest)
+            .class_function("CheapTrick", &WorldJS::CheapTrick)
+            .class_function("D4C", &WorldJS::D4C)
+            .class_function("Synthesis", &WorldJS::Synthesis)
+            .class_function("DisplayInformationVal", &WorldJS::DisplayInformationVal)
+            .class_function("GetInformationVal", &WorldJS::GetInformationVal)
+            .class_function("Wav2World", &WorldJS::Wav2World);
 }
 

@@ -12,6 +12,8 @@ if (CMAKE_BUILD_TYPE STREQUAL Debug)
         -s LLD_REPORT_UNDEFINED \
         -s STRICT=1 \
         -s ASSERTIONS=1 \
+        --post-js ${CMAKE_SOURCE_DIR}/src/JS/JavaScriptLoader.js \
+        --post-js ${CMAKE_SOURCE_DIR}/src/JS/StaticDebug.js \
         --no-entry \
         --bind \
         --preload-file vaiueo2d.wav \
@@ -26,6 +28,7 @@ else ()
         -s LLD_REPORT_UNDEFINED \
         -s STRICT=1 \
         -s ASSERTIONS=1 \
+        --post-js ${CMAKE_SOURCE_DIR}/src/JS/JavaScriptLoader.js \
         --no-entry \
         -g3 \
         -Oz \
