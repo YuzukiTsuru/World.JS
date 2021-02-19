@@ -5,6 +5,10 @@
 
 #include "WorldJS.h"
 
+//-----------------------------------------------------------------------------
+// The JavaScript API in C++
+//----------------------------------------------------------------------------_
+
 EMSCRIPTEN_KEEPALIVE emscripten::val WorldJS::Dio(emscripten::val x_val, int fs, double frame_period) {
     return WorldNativeFun::Dio_JS(std::move(x_val), fs, frame_period);
 }
@@ -54,20 +58,21 @@ EMSCRIPTEN_KEEPALIVE emscripten::val WorldJS::Wav2World(const std::string &fileN
 }
 
 //-----------------------------------------------------------------------------
-// The JavaScript API for C++
+// The JavaScript API bind for C++
 //-----------------------------------------------------------------------------
 EMSCRIPTEN_BINDINGS(WorldJS) {
-    emscripten::function("DisplayInformation", &WorldNativeIO::DisplayInformation);
-    emscripten::function("WavRead_JS", &WorldNativeIO::WavRead_JS);
-    emscripten::function("GetInformation", &WorldNativeIO::GetInformation);
-    emscripten::function("WavWrite_JS", &WorldNativeIO::WavWrite_JS);
-    emscripten::function("Dio_JS", &WorldNativeFun::Dio_JS);
-    emscripten::function("Harvest_JS", &WorldNativeFun::Harvest_JS);
-    emscripten::function("CheapTrick_JS", &WorldNativeFun::CheapTrick_JS);
-    emscripten::function("D4C_JS", &WorldNativeFun::D4C_JS);
-    emscripten::function("Synthesis_JS", &WorldNativeFun::Synthesis_JS);
-    emscripten::function("DisplayInformationVal", &WorldJSWrapper::DisplayInformationVal);
-    emscripten::function("GetInformationVal", &WorldJSWrapper::GetInformationVal);
-    emscripten::function("Wav2World", &WorldJSWrapper::W2World);
+    emscripten::class_<WorldJS>("WorldJS")
+            .function("DisplayInformation", &WorldJS::DisplayInformation)
+            .function("WavRead", &WorldJS::WavRead)
+            .function("GetInformation", &WorldJS::GetInformation)
+            .function("WavWrite", &WorldJS::WavWrite)
+            .function("Dio", &WorldJS::Dio)
+            .function("Harvest", &WorldJS::Harvest)
+            .function("CheapTrick", &WorldJS::CheapTrick)
+            .function("D4C", &WorldJS::D4C)
+            .function("Synthesis", &WorldJS::Synthesis)
+            .function("DisplayInformationVal", &WorldJS::DisplayInformationVal)
+            .function("GetInformationVal", &WorldJS::GetInformationVal)
+            .function("Wav2World", &WorldJS::Wav2World);
 }
 
