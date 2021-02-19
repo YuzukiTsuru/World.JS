@@ -62,6 +62,7 @@ EMSCRIPTEN_KEEPALIVE emscripten::val WorldJS::Wav2World(const std::string &fileN
 //-----------------------------------------------------------------------------
 EMSCRIPTEN_BINDINGS(WorldJS) {
     emscripten::class_<WorldJS>("WorldJS")
+            .constructor<>()
             .function("DisplayInformation", &WorldJS::DisplayInformation)
             .function("WavRead", &WorldJS::WavRead)
             .function("GetInformation", &WorldJS::GetInformation)
