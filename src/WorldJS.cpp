@@ -3,6 +3,8 @@
 //
 #include "WorldJS.h"
 
+#include <utility>
+
 EMSCRIPTEN_KEEPALIVE emscripten::val WorldJS::Dio(emscripten::val x_val, int fs, double frame_period) {
     return WorldNativeFun::Dio_JS(std::move(x_val), fs, frame_period);
 }
@@ -37,6 +39,18 @@ EMSCRIPTEN_KEEPALIVE emscripten::val WorldJS::WavRead(const std::string &filenam
 
 EMSCRIPTEN_KEEPALIVE emscripten::val WorldJS::WavWrite(emscripten::val y_val, int fs, const std::string &filename) {
     return WorldNativeIO::WavWrite_JS(std::move(y_val), fs, filename);
+}
+
+EMSCRIPTEN_KEEPALIVE void WorldJS::DisplayInformationVal(emscripten::val x) {
+    WorldJSWrapper::DisplayInformationVal(std::move(x));
+}
+
+EMSCRIPTEN_KEEPALIVE emscripten::val WorldJS::GetInformationVal(const emscripten::val &x) {
+    return WorldJSWrapper::GetInformationVal(x);
+}
+
+EMSCRIPTEN_KEEPALIVE emscripten::val WorldJS::Wav2World(const std::string &fileName) {
+    return WorldJSWrapper::W2World(fileName);
 }
 
 //-----------------------------------------------------------------------------

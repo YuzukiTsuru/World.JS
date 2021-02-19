@@ -57,6 +57,12 @@ public:
     static EMSCRIPTEN_KEEPALIVE emscripten::val WavRead(const std::string &filename);
 
     static EMSCRIPTEN_KEEPALIVE emscripten::val WavWrite(emscripten::val y_val, int fs, const std::string &filename);
+
+    static EMSCRIPTEN_KEEPALIVE void DisplayInformationVal(emscripten::val x);
+
+    static EMSCRIPTEN_KEEPALIVE emscripten::val GetInformationVal(const emscripten::val &x);
+
+    static EMSCRIPTEN_KEEPALIVE emscripten::val Wav2World(const std::string &fileName);
 };
 
 #endif //WORLDJS_WORLDJS_H
