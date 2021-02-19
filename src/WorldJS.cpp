@@ -1,9 +1,9 @@
 ﻿//
 // Created by YuzukiTsuru on 2019/7/14.
 //
-#include "WorldJS.h"
-
 #include <utility>
+
+#include "WorldJS.h"
 
 EMSCRIPTEN_KEEPALIVE emscripten::val WorldJS::Dio(emscripten::val x_val, int fs, double frame_period) {
     return WorldNativeFun::Dio_JS(std::move(x_val), fs, frame_period);
