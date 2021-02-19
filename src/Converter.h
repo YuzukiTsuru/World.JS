@@ -3,7 +3,9 @@
 //
 
 #pragma once
+
 #include <emscripten/val.h>
+#include <emscripten.h>
 
 template<class Type>
 emscripten::val Get1XArray(Type *arr, int len) {
@@ -25,9 +27,11 @@ Type *GetPtrFrom1XArray(emscripten::val arr, int *len = nullptr) {
         len = new int[1];
     }
     *len = arr["length"].as<int>();
-    Type *ret = new Type[*len];
+
+    auto *ret = new Type[*len];
+    int ptr = (int) (ret) / sizeof(Type);
+
     emscripten::val module = emscripten::val::global("Module");
-    int ptr = (int) ret / sizeof(Type);
     module["HEAPF64"].call<emscripten::val>("set", arr, emscripten::val(ptr));
     return ret;
 }
@@ -49,7 +53,7 @@ Type **GetPtrFrom2XArray(const emscripten::val &arr, int *y_len = nullptr, int *
         Type **ret = new Type *[*y_len];
         for (int i = 0; i < *y_len; i++) {
             ret[i] = new Type[*x_len];
-            int ptr = (int) ret[i] / sizeof(Type);
+            int ptr = (int) (ret[i]) / sizeof(Type);
             module["HEAPF64"].call<emscripten::val>("set", arr[i], emscripten::val(ptr));
         }
         return ret;

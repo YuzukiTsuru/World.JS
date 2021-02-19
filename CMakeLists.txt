@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 if (CMAKE_BUILD_TYPE STREQUAL Debug)
     set(flag "\
         -s SAFE_HEAP=1 \
-        -s WASM=1 \
+        -s WASM=0 \
         -s FORCE_FILESYSTEM=1 \
         -s ALLOW_MEMORY_GROWTH=1 \
         -s LLD_REPORT_UNDEFINED \
@@ -20,7 +20,7 @@ if (CMAKE_BUILD_TYPE STREQUAL Debug)
 else ()
     set(flag "\
         -s SAFE_HEAP=1 \
-        -s WASM=1 \
+        -s WASM=0 \
         -s FORCE_FILESYSTEM=1 \
         -s ALLOW_MEMORY_GROWTH=1 \
         -s LLD_REPORT_UNDEFINED \
@@ -69,4 +69,4 @@ endif ()
 
 # test
 add_executable(temp_test test/temp_test.cpp)
-target_link_libraries(temp_test tools Wav2World)
+set_target_properties(temp_test PROPERTIES LINK_FLAGS "-s LLD_REPORT_UNDEFINED --bind --no-entry" DEBUG_POSTFIX "d")

@@ -11,7 +11,7 @@ emscripten::val WorldNativeFun::Dio_JS(emscripten::val x_val, int fs, double fra
     // translate array to C++ ptr
     auto x = GetPtrFrom1XArray<double>(std::move(x_val), &x_length);
     if (x_length == 0) {
-        emscripten_log(EM_LOG_ERROR, E01);
+        emscripten_log(E01);
         EM_TERM();
     }
 
@@ -53,7 +53,7 @@ emscripten::val WorldNativeFun::Harvest_JS(emscripten::val x_val, int fs, double
     // translate array to C++ ptr
     auto x = GetPtrFrom1XArray<double>(std::move(x_val), &x_length);
     if (x_length == 0) {
-        emscripten_log(EM_LOG_ERROR, E01);
+        emscripten_log(E01);
         EM_TERM();
     }
     // init Harvest Option
@@ -85,7 +85,7 @@ emscripten::val WorldNativeFun::CheapTrick_JS(emscripten::val x_val, emscripten:
     // translate array to C++ ptr
     auto x = GetPtrFrom1XArray<double>(std::move(x_val), &x_length);
     if (x_length == 0) {
-        emscripten_log(EM_LOG_ERROR, E01);
+        emscripten_log(E01);
         EM_TERM();
     }
     auto f0 = GetPtrFrom1XArray<double>(std::move(f0_val), &f0_length);
@@ -118,7 +118,7 @@ emscripten::val WorldNativeFun::D4C_JS(emscripten::val x_val, emscripten::val f0
     // translate array to C++ ptr
     auto x = GetPtrFrom1XArray<double>(std::move(x_val), &x_length);
     if (x_length == 0) {
-        emscripten_log(EM_LOG_ERROR, E01);
+        emscripten_log(E01);
         EM_TERM();
     }
     auto f0 = GetPtrFrom1XArray<double>(std::move(f0_val), &f0_length);

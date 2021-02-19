@@ -3,23 +3,47 @@
 //
 
 #include <iostream>
+#include <emscripten.h>
+#include <emscripten/bind.h>
 
-#include "Wav2World.h"
-#include <audioio.h>
+
+struct Point2f {
+    float x;
+    float y;
+};
+
+struct PersonRecord {
+    std::string name;
+    int age;
+};
+
+// Array fields are treated as if they were std::array<type,size>
+struct ArrayInStruct {
+    int field[2];
+};
+
+PersonRecord findPersonAtLocation(Point2f) {
+    return PersonRecord();
+}
 
 
-int main() {
-    std::string file = "../test/vaiueo2d.wav";
-    int x_length = GetAudioLength(file.c_str());
-    if (x_length <= 0) {
-        if (x_length == 0) printf("error: File not found.\n");
-        else printf("error: The file is not .wav format.\n");
-        return -1;
-    }
-    auto *x = new double[x_length];
-    // wavread() must be called after GetAudioLength().
-    int fs, nbit;
-    wavread(file.c_str(), &fs, &nbit, x);
-    Wav2World(x, x_length, fs);
-    return 0;
+EMSCRIPTEN_BINDINGS(my_value_example) {
+    emscripten::value_array<Point2f>("Point2f")
+            .element(&Point2f::x)
+            .element(&Point2f::y);
+
+    emscripten::value_object<PersonRecord>("PersonRecord")
+            .field("name", &PersonRecord::name)
+            .field("age", &PersonRecord::age);
+
+    emscripten::value_object<ArrayInStruct>("ArrayInStruct")
+            .field("field", &ArrayInStruct::field) // Need to register the array type
+            ;
+
+    // Register std::array<int, 2> because ArrayInStruct::field is interpreted as such
+    emscripten::value_array<std::array<int, 2>>("array_int_2")
+            .element(emscripten::index<0>())
+            .element(emscripten::index<1>());
+
+    emscripten::function("findPersonAtLocation", &findPersonAtLocation);
 }

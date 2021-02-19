@@ -34,7 +34,7 @@ emscripten::val WorldJSWrapper::W2World(const std::string &fileName) {
     int x_length = GetAudioLength(f);
 
     if (x_length == 0) {
-        emscripten_log(EM_LOG_ERROR, E01);
+        emscripten_log(E01);
         EM_TERM();
     }
 

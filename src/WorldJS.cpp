@@ -1,12 +1,10 @@
 ﻿//
 // Created by YuzukiTsuru on 2019/7/14.
 //
-#include <emscripten/bind.h>
+
 
 #include "WorldJS.h"
-#include "WorldNativeIO.h"
-#include "WorldNativeFun.h"
-#include "WorldJSWrapper.h"
+
 
 //-----------------------------------------------------------------------------
 // The JavaScript API for C++

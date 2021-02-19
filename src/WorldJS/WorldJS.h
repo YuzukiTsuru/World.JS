@@ -1,3 +1,5 @@
+#ifndef WORLDJS_WORLDJS_H
+#define WORLDJS_WORLDJS_H
 //-----------------------------------------------------------------------------
 // WORLD core functions.
 //-----------------------------------------------------------------------------
@@ -21,3 +23,19 @@
 #include "ErrorCode.h"
 #include "Converter.h"
 #include "Wav2World.h"
+#include "WorldNativeIO.h"
+#include "WorldNativeFun.h"
+#include "WorldJSWrapper.h"
+
+//-----------------------------------------------------------------------------
+// emscripten functions.
+//-----------------------------------------------------------------------------
+#include <emscripten.h>
+#include <emscripten/bind.h>
+
+class WorldJS {
+public:
+
+};
+
+#endif //WORLDJS_WORLDJS_H
