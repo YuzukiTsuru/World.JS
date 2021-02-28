@@ -51,28 +51,24 @@ Wrapper:
 
 ## How To Use
 
+First, load the entire WorldJS Module.
+
+```javascript
+let WorldJS = Module.WorldJS
+```
+
 ### Example
 
-#### WavRead_JS
+#### WavRead
 
 > .wav input functions
 
-```html
-<script src="WorldJS.js"></script> 
-
-<script>
-    let x = Module.WavRead_JS("vaiueo2d.wav");
-    console.log(x);
-    console.log(x.x);
-    console.log(x.fs);
-    console.log(x.nbit);
-    console.log(x.x_length);
-</script>
+```javascript
+let x = WorldJS.WavRead("vaiueo2d.wav")
+console.log(x)
 ```
 
-![wr](assets/img/WavRead.png)
-
-#### DIO_JS
+#### DIO
 
 > F0 estimation based on DIO (Distributed Inline-filter Operation).
 
