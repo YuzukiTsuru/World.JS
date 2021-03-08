@@ -3,3 +3,16 @@
 //
 
 #include "Configuration.h"
+
+
+void Configuration::setFramePeriod(int framePeriod) {
+
+}
+
+void Configuration::setFramePeriod(double framePeriod) {
+
+}
+
+Configure Configuration::getConfig() {
+    return
+}

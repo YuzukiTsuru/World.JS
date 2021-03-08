@@ -5,10 +5,16 @@
 #ifndef WORLDJS_CONFIGURATION_H
 #define WORLDJS_CONFIGURATION_H
 
+#include "Config.h"
 
 class Configuration {
-    // TODO: 增加 JS -> 配置floor，fper
+public:
+    Configure getConfig();
 
+    // TODO: 增加 JS -> 配置floor，fper
+    void setFramePeriod(int framePeriod);
+
+    void setFramePeriod(double framePeriod);
 };
 
 

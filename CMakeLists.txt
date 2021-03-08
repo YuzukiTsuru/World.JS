@@ -3,24 +3,22 @@ project(WorldJS)
 
 set(CMAKE_CXX_STANDARD 17)
 
-option(WASM "Build to WASM Code" ON)
+option(WASM "Build to WASM Code")
+
+set(flag "-s SAFE_HEAP=1 -s FORCE_FILESYSTEM=1 -s ALLOW_MEMORY_GROWTH=1 -s LLD_REPORT_UNDEFINED -s STRICT=1 \
+          -s ASSERTIONS=1 --post-js ${CMAKE_SOURCE_DIR}/src/JS/JavaScriptLoader.js --no-entry")
 
 if (WASM)
-    set(flag "-s WASM=1")
+    set(flag "-s WASM=1 ${flag}")
 else ()
-    set(flag "-s WASM=0")
+    set(flag "-s WASM=0 ${flag}")
 endif ()
 
 if (CMAKE_BUILD_TYPE STREQUAL Debug)
-    set(flag "\
-        -s SAFE_HEAP=1 ${flag} -s FORCE_FILESYSTEM=1 -s ALLOW_MEMORY_GROWTH=1 -s LLD_REPORT_UNDEFINED -s STRICT=1 -s ASSERTIONS=1 \
-        --post-js ${CMAKE_SOURCE_DIR}/src/JS/JavaScriptLoader.js --post-js ${CMAKE_SOURCE_DIR}/src/JS/StaticDebug.js --no-entry \
-        --bind --preload-file vaiueo2d.wav --use-preload-plugins")
+    set(flag "${flag} --post-js ${CMAKE_SOURCE_DIR}/src/JS/StaticDebug.js --bind --preload-file vaiueo2d.wav \
+              --use-preload-plugins")
 else ()
-    set(flag "\
-        -s SAFE_HEAP=1 ${flag} -s FORCE_FILESYSTEM=1 -s ALLOW_MEMORY_GROWTH=1 -s LLD_REPORT_UNDEFINED \
-        -s STRICT=1 -s ASSERTIONS=1 --post-js ${CMAKE_SOURCE_DIR}/src/JS/JavaScriptLoader.js --no-entry \
-        -g3 -Oz --bind --llvm-opts 3")
+    set(flag "${flag} -g3 -Oz --bind --llvm-opts 3")
 endif ()
 
 include_directories(
@@ -45,7 +43,7 @@ add_library(Wav2World ${Wav2World} ${W2WModule})
 target_link_libraries(Wav2World World)
 
 # World.JS
-add_executable(WorldJS ${sources} ${WorldJS} ${Module})
+add_executable(WorldJS ${sources} ${WorldJS} ${Module} src/Config.h)
 set_target_properties(WorldJS PROPERTIES LINK_FLAGS ${flag} DEBUG_POSTFIX "d")
 target_link_libraries(WorldJS tools World Wav2World)
 
