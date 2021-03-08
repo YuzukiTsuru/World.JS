@@ -17,7 +17,7 @@ install:
   - ./emsdk install latest
   - ./emsdk activate latest  
   - source ./emsdk_env.sh
-  - sudo apt install cmake -y
+  - sudo apt-get install cmake -y
   - cd ..
   - git submodule init
   - git submodule update
