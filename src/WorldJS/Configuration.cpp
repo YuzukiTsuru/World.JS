@@ -14,5 +14,5 @@ void Configuration::setFramePeriod(double framePeriod) {
 }
 
 Configure Configuration::getConfig() {
-    return
+    return Configure();
 }
