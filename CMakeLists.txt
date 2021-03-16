@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 option(WASM "Build to WASM Code")
 
-set(flag "-s SAFE_HEAP=1 -s FORCE_FILESYSTEM=1 -s ALLOW_MEMORY_GROWTH=1 -s LLD_REPORT_UNDEFINED -s STRICT=1 \
+set(flag "-s SAFE_HEAP=1 -s FORCE_FILESYSTEM=1 -s ALLOW_MEMORY_GROWTH=1 -s STRICT=1 \
           -s ASSERTIONS=1 --post-js ${CMAKE_SOURCE_DIR}/src/JS/JavaScriptLoader.js --no-entry")
 
 if (WASM)
@@ -15,8 +15,8 @@ else ()
 endif ()
 
 if (CMAKE_BUILD_TYPE STREQUAL Debug)
-    set(flag "${flag} --post-js ${CMAKE_SOURCE_DIR}/src/JS/StaticDebug.js --bind --preload-file vaiueo2d.wav \
-              --use-preload-plugins")
+    set(flag "${flag} -s LLD_REPORT_UNDEFINED --post-js ${CMAKE_SOURCE_DIR}/src/JS/StaticDebug.js --bind --preload-file vaiueo2d.wav \
+              --use-preload-plugins -Wall")
 else ()
     set(flag "${flag} -g3 -Oz --bind --llvm-opts 3")
 endif ()
@@ -52,8 +52,8 @@ if (CMAKE_BUILD_TYPE STREQUAL Debug)
     # Copy Files
     add_custom_command(TARGET WorldJS PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different "${CMAKE_SOURCE_DIR}/test/vaiueo2d.wav" ${CMAKE_BINARY_DIR})
     add_custom_command(TARGET WorldJS POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different "${CMAKE_SOURCE_DIR}/test/index.html" ${CMAKE_BINARY_DIR})
-endif ()
 
-# test
-add_executable(temp_test test/temp_test.cpp)
-set_target_properties(temp_test PROPERTIES LINK_FLAGS "-s LLD_REPORT_UNDEFINED --bind --no-entry" DEBUG_POSTFIX "d")
+    # test
+    add_executable(temp_test test/temp_test.cpp)
+    set_target_properties(temp_test PROPERTIES LINK_FLAGS "-s LLD_REPORT_UNDEFINED --bind --no-entry" DEBUG_POSTFIX "d")
+endif ()
