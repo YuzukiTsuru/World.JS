@@ -55,5 +55,5 @@ if (CMAKE_BUILD_TYPE STREQUAL Debug)
 
     # test
     add_executable(temp_test test/temp_test.cpp)
-    set_target_properties(temp_test PROPERTIES LINK_FLAGS "-s LLD_REPORT_UNDEFINED --bind --no-entry" DEBUG_POSTFIX "d")
+    set_target_properties(temp_test PROPERTIES LINK_FLAGS "-s LLD_REPORT_UNDEFINED --bind --no-entry")
 endif ()
