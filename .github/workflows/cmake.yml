@@ -26,12 +26,9 @@ jobs:
     - name: Test env
       run: emcc -v
         
-    - name: Create Build Environment
-      run: cmake -E make_directory ${{github.workspace}}/build
-
     - name: Build
-      working-directory: ${{github.workspace}}/build
-      shell: bash
       run: >
-          emcmake cmake .
-          make -j
+          mkdir build;
+          cd build;
+          emcmake cmake ..;
+          cmake --build . --config Release;
