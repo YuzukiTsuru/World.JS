@@ -32,4 +32,6 @@ jobs:
     - name: Build
       working-directory: ${{github.workspace}}/build
       shell: bash
-      run: emcmake cmake --build . --config $BUILD_TYPE
+      run: >
+          emcmake cmake .
+          make -j
