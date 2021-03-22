@@ -26,15 +26,9 @@ jobs:
     - name: Test env
       run: emcc -v
         
-    - name: Create Build Environment
-      run: cmake -E make_directory ${{github.workspace}}/build
-
-    - name: Configure CMake
-      shell: bash
-      working-directory: ${{github.workspace}}/build
-      run: cmake $GITHUB_WORKSPACE -DCMAKE_TOOLCHAIN_FILE=${{env.EMSDK}}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE
-
     - name: Build
-      working-directory: ${{github.workspace}}/build
-      shell: bash
-      run: cmake --build . --config $BUILD_TYPE
+      run: >
+          mkdir build;
+          cd build;
+          emcmake cmake ..;
+          cmake --build . --config Release;
