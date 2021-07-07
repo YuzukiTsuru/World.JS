@@ -34,7 +34,7 @@ emscripten::val WorldNativeIO::WavRead_JS(const std::string &filename) {
     // GetAudioLength for read
     int x_length = GetAudioLength(f);
     if (x_length == 0) {
-        emscripten_log(EM_LOG_ERROR, E00);
+        emscripten_log(E00);
         EM_TERM();
     }
     auto x = new double[x_length];

@@ -6,7 +6,6 @@
 #define WORLDJS_WORLDNATIVEIO_H
 
 #include <iostream>
-#include <emscripten.h>
 
 #include "WorldJS.h"
 #include "Converter.h"

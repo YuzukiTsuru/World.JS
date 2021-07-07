@@ -3,23 +3,22 @@
 //
 
 #include <iostream>
+#include <emscripten.h>
+#include <emscripten/bind.h>
 
-#include "Wav2World.h"
-#include <audioio.h>
+using namespace emscripten;
 
+class MyClass {
+public:
+    MyClass() = default;
 
-int main() {
-    std::string file = "../test/vaiueo2d.wav";
-    int x_length = GetAudioLength(file.c_str());
-    if (x_length <= 0) {
-        if (x_length == 0) printf("error: File not found.\n");
-        else printf("error: The file is not .wav format.\n");
-        return -1;
-    }
-    auto *x = new double[x_length];
-    // wavread() must be called after GetAudioLength().
-    int fs, nbit;
-    wavread(file.c_str(), &fs, &nbit, x);
-    Wav2World(x, x_length, fs);
-    return 0;
+    static void add(int a, int b) {
+        printf("%d", a + b);
+    };
+};
+
+EMSCRIPTEN_BINDINGS(external_constructors) {
+    class_<MyClass>("MyClass")
+            .constructor<>()
+            .function("add", &MyClass::add);
 }
