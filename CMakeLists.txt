@@ -18,7 +18,7 @@ if (CMAKE_BUILD_TYPE STREQUAL Debug)
     set(flag "${flag} -s LLD_REPORT_UNDEFINED --post-js ${CMAKE_SOURCE_DIR}/src/JS/StaticDebug.js --bind --preload-file vaiueo2d.wav \
               --use-preload-plugins -Wall")
 else ()
-    set(flag "${flag} -g3 -Oz --bind --llvm-opts 3")
+    set(flag "${flag} -g3 -Oz --bind")
 endif ()
 
 include_directories(
