@@ -20,7 +20,8 @@ emscripten::val WorldJSWrapper::GetInformationVal(const emscripten::val &x) {
                        + "<br>Length "
                        + std::to_string(x["x_length"].as<int>())
                        + "[sample]"
-                       + "<br>Length " + std::to_string(static_cast<double>(x["x_length"].as<int>()) / x["fs"].as<int>())
+                       + "<br>Length " +
+                       std::to_string(static_cast<double>(x["x_length"].as<int>()) / x["fs"].as<int>())
                        + " [sec]";
     return emscripten::val(info);
 }

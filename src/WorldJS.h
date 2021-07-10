@@ -44,11 +44,15 @@ public:
 
     static EMSCRIPTEN_KEEPALIVE emscripten::val Harvest(emscripten::val x_val, int fs, double frame_period);
 
-    static EMSCRIPTEN_KEEPALIVE emscripten::val CheapTrick(emscripten::val x_val, emscripten::val f0_val, emscripten::val time_axis_val, int fs);
+    static EMSCRIPTEN_KEEPALIVE emscripten::val
+    CheapTrick(emscripten::val x_val, emscripten::val f0_val, emscripten::val time_axis_val, int fs);
 
-    static EMSCRIPTEN_KEEPALIVE emscripten::val D4C(emscripten::val x_val, emscripten::val f0_val, emscripten::val time_axis_val, int fft_size, int fs);
+    static EMSCRIPTEN_KEEPALIVE emscripten::val
+    D4C(emscripten::val x_val, emscripten::val f0_val, emscripten::val time_axis_val, int fft_size, int fs);
 
-    static EMSCRIPTEN_KEEPALIVE emscripten::val Synthesis(emscripten::val f0_val, const emscripten::val &spectral_val, const emscripten::val &aperiodicity_val, int fft_size, int fs, const emscripten::val &frame_period);
+    static EMSCRIPTEN_KEEPALIVE emscripten::val
+    Synthesis(emscripten::val f0_val, const emscripten::val &spectral_val, const emscripten::val &aperiodicity_val,
+              int fft_size, int fs, const emscripten::val &frame_period);
 
     static EMSCRIPTEN_KEEPALIVE void DisplayInformation(int fs, int nbit, int x_length);
 

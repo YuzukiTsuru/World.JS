@@ -78,7 +78,8 @@ emscripten::val WorldNativeFun::Harvest_JS(emscripten::val x_val, int fs, double
     return ret;
 }
 
-emscripten::val WorldNativeFun::CheapTrick_JS(emscripten::val x_val, emscripten::val f0_val, emscripten::val time_axis_val, int fs) {
+emscripten::val
+WorldNativeFun::CheapTrick_JS(emscripten::val x_val, emscripten::val f0_val, emscripten::val time_axis_val, int fs) {
     // init val
     emscripten::val ret = emscripten::val::object();
     int x_length, f0_length;
@@ -111,7 +112,9 @@ emscripten::val WorldNativeFun::CheapTrick_JS(emscripten::val x_val, emscripten:
     return ret;
 }
 
-emscripten::val WorldNativeFun::D4C_JS(emscripten::val x_val, emscripten::val f0_val, emscripten::val time_axis_val, int fft_size, int fs) {
+emscripten::val
+WorldNativeFun::D4C_JS(emscripten::val x_val, emscripten::val f0_val, emscripten::val time_axis_val, int fft_size,
+                       int fs) {
     // init val
     emscripten::val ret = emscripten::val::object();
     int x_length, f0_length;
@@ -142,7 +145,9 @@ emscripten::val WorldNativeFun::D4C_JS(emscripten::val x_val, emscripten::val f0
     return ret;
 }
 
-emscripten::val WorldNativeFun::Synthesis_JS(emscripten::val f0_val, const emscripten::val &spectral_val, const emscripten::val &aperiodicity_val, int fft_size, int fs, const emscripten::val &frame_period) {
+emscripten::val WorldNativeFun::Synthesis_JS(emscripten::val f0_val, const emscripten::val &spectral_val,
+                                             const emscripten::val &aperiodicity_val, int fft_size, int fs,
+                                             const emscripten::val &frame_period) {
     // Synthesis Audio
     int f0_length;
     double framePeriodVal;

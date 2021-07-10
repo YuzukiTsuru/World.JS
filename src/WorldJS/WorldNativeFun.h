@@ -20,13 +20,17 @@ public:
     static emscripten::val Harvest_JS(emscripten::val x_val, int fs, double frame_period);
 
     // CheapTrick
-    static emscripten::val CheapTrick_JS(emscripten::val x_val, emscripten::val f0_val, emscripten::val time_axis_val, int fs);
+    static emscripten::val
+    CheapTrick_JS(emscripten::val x_val, emscripten::val f0_val, emscripten::val time_axis_val, int fs);
 
     // D4C
-    static emscripten::val D4C_JS(emscripten::val x_val, emscripten::val f0_val, emscripten::val time_axis_val, int fft_size, int fs);
+    static emscripten::val
+    D4C_JS(emscripten::val x_val, emscripten::val f0_val, emscripten::val time_axis_val, int fft_size, int fs);
 
     // Synthesis
-    static emscripten::val Synthesis_JS(emscripten::val f0_val, const emscripten::val &spectral_val, const emscripten::val &aperiodicity_val, int fft_size, int fs, const emscripten::val &frame_period);
+    static emscripten::val
+    Synthesis_JS(emscripten::val f0_val, const emscripten::val &spectral_val, const emscripten::val &aperiodicity_val,
+                 int fft_size, int fs, const emscripten::val &frame_period);
 };
 
 

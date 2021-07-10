@@ -7,7 +7,7 @@
 
 class WorldPara {
 public:
-    double frame_period = 0.0;
+    double frame_period = 5.0;
     int fs = 0;
 
     double *f0 = nullptr;

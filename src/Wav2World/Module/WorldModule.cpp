@@ -8,6 +8,32 @@
 
 #include "WorldModule.h"
 
+WorldModule::WorldModule(double *x, int x_length, int fs) {
+    this->x = x;
+    this->x_length = x_length;
+    worldPara.fs = fs;
+    worldPara.frame_period = 5.0;
+    F0EstimationDio();
+    SpectralEnvelopeEstimation();
+    AperiodicityEstimation();
+}
+
+WorldModule::~WorldModule() {
+    delete[] worldPara.time_axis;
+    delete[] worldPara.f0;
+    for (int i = 0; i < worldPara.f0_length; ++i) {
+        delete[] worldPara.spectrogram[i];
+        delete[] worldPara.aperiodicity[i];
+    }
+    delete[] worldPara.spectrogram;
+    delete[] worldPara.aperiodicity;
+}
+
+WorldPara WorldModule::GetModule() {
+    return worldPara;
+}
+
+
 WorldPara WorldModule::F0EstimationDio() {
     DioOption option = {0};
     InitializeDioOption(&option);
@@ -71,7 +97,8 @@ WorldPara WorldModule::SpectralEnvelopeEstimation() {
         worldPara.spectrogram[i] = new double[worldPara.fft_size / 2 + 1];
     }
 
-    CheapTrick(x, x_length, worldPara.fs, worldPara.time_axis, worldPara.f0, worldPara.f0_length, &option, worldPara.spectrogram);
+    CheapTrick(x, x_length, worldPara.fs, worldPara.time_axis, worldPara.f0, worldPara.f0_length, &option,
+               worldPara.spectrogram);
     return worldPara;
 }
 
@@ -93,31 +120,7 @@ WorldPara WorldModule::AperiodicityEstimation() {
         worldPara.aperiodicity[i] = new double[worldPara.fft_size / 2 + 1];
     }
 
-    D4C(x, x_length, worldPara.fs, worldPara.time_axis, worldPara.f0, worldPara.f0_length, worldPara.fft_size, &option, worldPara.aperiodicity);
-    return worldPara;
-}
-
-WorldModule::WorldModule(double *x, int x_length, int fs) {
-    this->x = x;
-    this->x_length = x_length;
-    worldPara.fs = fs;
-    worldPara.frame_period = 5.0;
-    F0EstimationDio();
-    SpectralEnvelopeEstimation();
-    AperiodicityEstimation();
-}
-
-WorldModule::~WorldModule() {
-    delete[] worldPara.time_axis;
-    delete[] worldPara.f0;
-    for (int i = 0; i < worldPara.f0_length; ++i) {
-        delete[] worldPara.spectrogram[i];
-        delete[] worldPara.aperiodicity[i];
-    }
-    delete[] worldPara.spectrogram;
-    delete[] worldPara.aperiodicity;
-}
-
-WorldPara WorldModule::GetModule() {
+    D4C(x, x_length, worldPara.fs, worldPara.time_axis, worldPara.f0, worldPara.f0_length, worldPara.fft_size, &option,
+        worldPara.aperiodicity);
     return worldPara;
 }

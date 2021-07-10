@@ -15,7 +15,7 @@ double *Wav2World::GetF0() const {
     return worldPara.f0;
 }
 
-double * Wav2World::GetTimeAxis() const {
+double *Wav2World::GetTimeAxis() const {
     return worldPara.time_axis;
 }
 
