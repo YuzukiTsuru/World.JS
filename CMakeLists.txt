@@ -21,31 +21,29 @@ else ()
     set(flag "${flag} -g3 -Oz --bind")
 endif ()
 
+add_subdirectory(lib/WorldCMake)
+
 include_directories(
         lib/WorldCMake/src/
+        lib/WorldCMake/tools/
         src/WorldJS/
         src/Wav2World/Module/
         src/Wav2World/
-        tools/
         src/
 )
 
 file(GLOB sources src/*.cpp)
 file(GLOB WorldJS src/WorldJS/*.cpp)
-file(GLOB tools tools/*.cpp)
 file(GLOB W2WModule src/Wav2World/Module/*.cpp)
-file(GLOB World lib/WorldCMake/src/*.cpp)
 file(GLOB Wav2World src/Wav2World/*.cpp)
 
-add_library(tools ${tools})
-add_library(World ${World})
 add_library(Wav2World ${Wav2World} ${W2WModule})
-target_link_libraries(Wav2World World)
+target_link_libraries(Wav2World world::core)
 
 # World.JS
 add_executable(WorldJS ${sources} ${WorldJS} ${Module} src/Config.h)
 set_target_properties(WorldJS PROPERTIES LINK_FLAGS ${flag} DEBUG_POSTFIX "d")
-target_link_libraries(WorldJS tools World Wav2World)
+target_link_libraries(WorldJS world::core world::tool Wav2World)
 
 
 if (CMAKE_BUILD_TYPE STREQUAL Debug)
