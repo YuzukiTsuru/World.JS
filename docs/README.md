@@ -61,26 +61,31 @@ let WorldJS = Module.WorldJS
 
 #### WavRead
 
-> .wav input functions
+- .wav input functions
+  - Parameter
+    - `filename: string`  Wav File Name
+  - Retrun
+    - `fs: int `  
+    - `nbit: int`
+    - `x: Float64Array`
+    - `x_lemgth: int`
 
 ```javascript
 let x = WorldJS.WavRead("vaiueo2d.wav")
 console.log(x)
 ```
+![WavRead](assets/img/WavRead.png)
 
 #### DIO
 
-> F0 estimation based on DIO (Distributed Inline-filter Operation).
+- F0 estimation based on DIO (Distributed Inline-filter Operation).
+  - Parameter
+    - `x: Float64Array` 
 
 ```html
-<script src="WorldJS.js"></script> 
-
-<script>
-    let x = Module.WavRead_JS("vaiueo2d.wav");
-    let f0 = Module.Dio_JS(x.x,x.fs,2.0);
-    console.log(x);
-    console.log(f0);
-</script>
+let f0 = WorldJS.Dio_JS(x.x,x.fs,2.0);
+console.log(x);
+console.log(f0);
 ```
 ![Dio](assets/img/Dio.png)
 
