@@ -3,7 +3,12 @@ project(WorldJS)
 
 set(CMAKE_CXX_STANDARD 17)
 
-option(WASM "Build to WASM Code")
+option(WASM "Build to WASM Code" OFF)
+
+if (NOT CMAKE_TOOLCHAIN_FILE)
+    message(WARNING "CMAKE_TOOLCHAIN_FILE is not defined, you may need to set it \
+            -DCMAKE_TOOLCHAIN_FILE=\"path/to/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake\"")
+endif ()
 
 set(flag "-s SAFE_HEAP=1 -s FORCE_FILESYSTEM=1 -s ALLOW_MEMORY_GROWTH=1 -s STRICT=1 \
           -s ASSERTIONS=1 --post-js ${CMAKE_SOURCE_DIR}/src/JS/JavaScriptLoader.js --no-entry")
@@ -15,10 +20,10 @@ else ()
 endif ()
 
 if (CMAKE_BUILD_TYPE STREQUAL Debug)
-    set(flag "${flag} -s LLD_REPORT_UNDEFINED --post-js ${CMAKE_SOURCE_DIR}/src/JS/StaticDebug.js --bind --preload-file vaiueo2d.wav \
-              --use-preload-plugins -Wall")
+    set(flag "${flag} -Wl -O0 -g3 -s LLD_REPORT_UNDEFINED --post-js ${CMAKE_SOURCE_DIR}/src/JS/StaticDebug.js --bind --preload-file vaiueo2d.wav \
+              --use-preload-plugins -Wall -s ALLOW_UNIMPLEMENTED_SYSCALLS")
 else ()
-    set(flag "${flag} -g3 -Oz --bind")
+    set(flag "${flag} -g0 -Oz --closure 2 --bind")
 endif ()
 
 add_subdirectory(lib/WorldCMake)
