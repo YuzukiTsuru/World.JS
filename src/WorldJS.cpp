@@ -28,8 +28,8 @@ WorldJS::D4C(emscripten::val x_val, emscripten::val f0_val, emscripten::val time
 }
 
 EMSCRIPTEN_KEEPALIVE emscripten::val
-WorldJS::Synthesis(emscripten::val f0_val, const emscripten::val &spectral_val, const emscripten::val &aperiodicity_val,
-                   int fft_size, int fs, const emscripten::val &frame_period) {
+WorldJS::Synthesis(emscripten::val f0_val, const emscripten::val &spectral_val, const emscripten::val &aperiodicity_val, int fft_size, int fs,
+                   const emscripten::val &frame_period) {
     return WorldNativeFun::Synthesis_JS(std::move(f0_val), spectral_val, aperiodicity_val, fft_size, fs, frame_period);
 }
 
