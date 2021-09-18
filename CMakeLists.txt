@@ -20,8 +20,8 @@ else ()
 endif ()
 
 if (CMAKE_BUILD_TYPE STREQUAL Debug)
-    set(flag "${flag} -Wl -O0 -g3 -s LLD_REPORT_UNDEFINED --post-js ${CMAKE_SOURCE_DIR}/src/JS/StaticDebug.js --bind --preload-file vaiueo2d.wav \
-              --use-preload-plugins -Wall -s ALLOW_UNIMPLEMENTED_SYSCALLS")
+    set(flag "${flag} -Wall -O0 -g3 -s LLD_REPORT_UNDEFINED --post-js ${CMAKE_SOURCE_DIR}/src/JS/StaticDebug.js --bind \
+              --preload-file vaiueo2d.wav --use-preload-plugins")
 else ()
     set(flag "${flag} -g0 -Oz --closure 2 --bind")
 endif ()
