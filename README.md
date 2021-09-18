@@ -10,7 +10,7 @@
 ### About World.JS
 
 World.JS is A JavaScript Wrapper for World Vocoder Powered by Emscripten.  
-You can use World Vocoder in your Browser, Node, Electron app and many more like normal JavaScript.
+You can use World Vocoder in your Browser, NodeJS, Electron app and many more like normal JavaScript.
 
 [Examples](https://www.gloomyghost.com/World.JS/#/?id=example) &mdash;
 [Documentation](https://www.gloomyghost.com/World.JS/) &mdash;
