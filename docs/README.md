@@ -7,7 +7,7 @@
 ## About World.JS
 
 World.JS is A JavaScript Wrapper for World Vocoder Powered by emscripten.  
-You can use World Vocoder in your Browser, Node, Electron app and many more like normal JavaScript.
+You can use World Vocoder in your Browser, NodeJS, Electron app and many more like normal JavaScript.
 
 ##  About Emscripten
 Emscripten is a toolchain for compiling to asm.js and WebAssembly, built using LLVM, that lets you run C and C++ on the web at near-native speed without plugins.
