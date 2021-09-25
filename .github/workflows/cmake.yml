@@ -4,7 +4,7 @@ on: [push]
 
 env:
   BUILD_TYPE: Release
-  EM_VERSION: 2.0.30
+  EM_VERSION: latest
   EM_CACHE_FOLDER: 'emsdk-cache'
 
 jobs:
