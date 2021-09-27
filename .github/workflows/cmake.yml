@@ -17,7 +17,7 @@ jobs:
       uses: textbook/git-checkout-submodule-action@master
     
     - name: Add emsdk
-      uses: mymindstorm/setup-emsdk@v7
+      uses: mymindstorm/setup-emsdk@master
       with:
         actions-cache-folder: ${{env.EM_CACHE_FOLDER}}
     
