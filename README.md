@@ -22,7 +22,7 @@ You can use World Vocoder in your Browser, NodeJS, Electron app and many more li
 |[![Build status](https://ci.appveyor.com/api/projects/status/6vbge2p0q0mdshtc/branch/master?svg=true)](https://ci.appveyor.com/project/GloomyGhost-MosquitoCoil/world-js/branch/master)|[![Build status](https://ci.appveyor.com/api/projects/status/6vbge2p0q0mdshtc?svg=true)](https://ci.appveyor.com/project/GloomyGhost-MosquitoCoil/world-js)|![CMake](https://github.com/YuzukiTsuru/World.JS/workflows/CMake/badge.svg)|
 
 ## Documentation
-Read more info in (Maybe Outdate): [Documentation](http://YuzukiTsuru.github.io/World.JS)
+Read more info in (Maybe Outdate, Need Update): [Documentation](http://YuzukiTsuru.github.io/World.JS)
 
 ### API
 ```
