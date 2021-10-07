@@ -10,6 +10,11 @@ if (NOT CMAKE_TOOLCHAIN_FILE)
             -DCMAKE_TOOLCHAIN_FILE=\"path/to/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake\"")
 endif ()
 
+# EMSDK VERSION CHECK
+if (${EMSCRIPTEN_VERSION} VERSION_LESS 2.0.29)
+    message(FATAL_ERROR "EMSCRIPTEN version looks too old. Was ${EMSCRIPTEN_VERSION}, should be at least 2.0.29.")
+endif ()
+
 set(flag "-s SAFE_HEAP=1 -s FORCE_FILESYSTEM=1 -s ALLOW_MEMORY_GROWTH=1 -s STRICT=1 -s ALLOW_UNIMPLEMENTED_SYSCALLS \
           -s ASSERTIONS=1 --post-js ${CMAKE_SOURCE_DIR}/src/JS/JavaScriptLoader.js --no-entry")
 
