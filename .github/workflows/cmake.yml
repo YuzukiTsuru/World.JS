@@ -4,7 +4,6 @@ on: [push]
 
 env:
   BUILD_TYPE: Release
-  EM_VERSION: 1.39.18
   EM_CACHE_FOLDER: 'emsdk-cache'
 
 jobs:
@@ -18,9 +17,8 @@ jobs:
       uses: textbook/git-checkout-submodule-action@master
     
     - name: Add emsdk
-      uses: mymindstorm/setup-emsdk@v7
+      uses: mymindstorm/setup-emsdk@master
       with:
-        version: ${{env.EM_VERSION}}
         actions-cache-folder: ${{env.EM_CACHE_FOLDER}}
     
     - name: Test env
