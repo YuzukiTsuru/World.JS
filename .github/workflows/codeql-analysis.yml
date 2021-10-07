@@ -49,23 +49,5 @@ jobs:
         # Prefix the list here with "+" to use these queries and those in the config file.
         # queries: ./path/to/local/query, your-org/your-repo/queries@main
 
-    - name: Checkout submodules
-      uses: textbook/git-checkout-submodule-action@master
-    
-    - name: Add emsdk
-      uses: mymindstorm/setup-emsdk@master
-      with:
-        actions-cache-folder: ${{env.EM_CACHE_FOLDER}}
-    
-    - name: Test env
-      run: emcc -v
-        
-    - name: Build
-      run: >
-          mkdir build;
-          cd build;
-          emcmake cmake ..;
-          cmake --build . --config Release;
-
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
