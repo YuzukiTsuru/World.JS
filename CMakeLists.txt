@@ -7,7 +7,8 @@ option(WASM "Build to WASM Code" OFF)
 
 if (NOT CMAKE_TOOLCHAIN_FILE)
     message(WARNING "CMAKE_TOOLCHAIN_FILE is not defined, you may need to set it \
-            -DCMAKE_TOOLCHAIN_FILE=\"path/to/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake\"")
+            -DCMAKE_TOOLCHAIN_FILE=\"path/to/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake\" \
+            OR using 'emcmake cmake ..' to build")
 endif ()
 
 # EMSDK VERSION CHECK
